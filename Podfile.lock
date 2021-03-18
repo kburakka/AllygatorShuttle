@@ -1,24 +1,28 @@
 PODS:
-  - Alamofire (5.4.1)
   - Starscream (4.0.4)
+  - SwiftGen (6.4.0)
+  - SwiftLint (0.43.1)
   - TinyConstraints (4.0.1)
 
 DEPENDENCIES:
-  - Alamofire (~> 5.4)
   - Starscream (~> 4.0)
+  - SwiftGen (~> 6.0)
+  - SwiftLint (~> 0.42)
   - TinyConstraints (~> 4.0)
 
 SPEC REPOS:
   trunk:
-    - Alamofire
     - Starscream
+    - SwiftGen
+    - SwiftLint
     - TinyConstraints
 
 SPEC CHECKSUMS:
-  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
+  SwiftGen: 67860cc7c3cfc2ed25b9b74cfd55495fc89f9108
+  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
 
-PODFILE CHECKSUM: a4e24d2df6511a3562563a541c98e1e9122306c3
+PODFILE CHECKSUM: 922405ac8fef09e306e61c75a54470b2ddcb276f
 
 COCOAPODS: 1.10.1

@@ -1,0 +1,35 @@
+fonts:
+  inputs: AllygatorShuttle/Resources/Fonts
+  outputs:
+    templateName: swift5
+    output: AllygatorShuttle/Resources/Fonts/Fonts.swift
+    params:
+        publicAccess: public
+        
+xcassets:
+  - inputs:
+    - AllygatorShuttle/Resources/Assets/Images.xcassets
+    - AllygatorShuttle/Resources/Assets/Colors.xcassets
+    outputs:
+      - templateName: swift5
+        output: AllygatorShuttle/Resources/Assets/Assets.swift
+        params:
+            publicAccess: public
+              
+  - inputs:
+    - AllygatorShuttle/Resources/Assets/Images.xcassets
+    outputs:
+      - templatePath: SwiftGenTemplates/images.stencil
+        output: AllygatorShuttle/Resources/Assets/UIImage+Images.swift
+        params:
+            publicAccess: public
+            
+  - inputs:
+    - AllygatorShuttle/Resources/Assets/Colors.xcassets
+    outputs:
+      - templatePath: SwiftGenTemplates/colors.stencil
+        output: AllygatorShuttle/Resources/Assets/UIColor+Colors.swift
+        params:
+            publicAccess: public
+
+

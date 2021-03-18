@@ -8,8 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		83C4918818C88DFEE7E05E0D /* Pods_AllygatorShuttle_AllygatorShuttleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5245A5915502690F137A2E /* Pods_AllygatorShuttle_AllygatorShuttleUITests.framework */; };
+		B307E28E2603F1930099B90A /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = B307E28D2603F1930099B90A /* swiftgen.yml */; };
+		B307E2992603F1F20099B90A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B307E2982603F1F20099B90A /* Images.xcassets */; };
+		B307E2A62603F4280099B90A /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307E2A52603F4280099B90A /* Fonts.swift */; };
+		B307E2AE2603F4610099B90A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B307E2AD2603F4610099B90A /* Assets.xcassets */; };
+		B307E2B52603F4720099B90A /* UIImage+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307E2B22603F4720099B90A /* UIImage+Images.swift */; };
+		B307E2B62603F4720099B90A /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307E2B32603F4720099B90A /* Assets.swift */; };
+		B307E2B72603F4720099B90A /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307E2B42603F4720099B90A /* UIColor+Colors.swift */; };
 		B35CBDD72603AE9C0071DE9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBDD62603AE9C0071DE9C /* AppDelegate.swift */; };
-		B35CBDE02603AE9E0071DE9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B35CBDDF2603AE9E0071DE9C /* Assets.xcassets */; };
 		B35CBDE32603AE9E0071DE9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B35CBDE12603AE9E0071DE9C /* LaunchScreen.storyboard */; };
 		B35CBDEE2603AE9E0071DE9C /* AllygatorShuttleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBDED2603AE9E0071DE9C /* AllygatorShuttleTests.swift */; };
 		B35CBDF92603AE9E0071DE9C /* AllygatorShuttleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBDF82603AE9E0071DE9C /* AllygatorShuttleUITests.swift */; };
@@ -37,6 +43,11 @@
 		B35CBF252603CEF90071DE9C /* BookingOpenedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBF242603CEF90071DE9C /* BookingOpenedData.swift */; };
 		B35CBF422603D1120071DE9C /* SocketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBF412603D1120071DE9C /* SocketData.swift */; };
 		B35CBF472603D2300071DE9C /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBF462603D2300071DE9C /* Socket.swift */; };
+		B35CBF622603E4CA0071DE9C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B35CBF612603E4CA0071DE9C /* .swiftlint.yml */; };
+		B35CBF912603E74C0071DE9C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B35CBF902603E74C0071DE9C /* Colors.xcassets */; };
+		B35CBF962603E7750071DE9C /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBF952603E7750071DE9C /* UIFont+Extensions.swift */; };
+		B35CBF9F2603E8360071DE9C /* MavenPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B35CBF9D2603E8360071DE9C /* MavenPro-Regular.ttf */; };
+		B35CBFA02603E8360071DE9C /* MavenPro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B35CBF9E2603E8360071DE9C /* MavenPro-Medium.ttf */; };
 		CC8AFD9940C1A950F2009602 /* Pods_AllygatorShuttle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49BAD2D213E44F2E9F7F0CF /* Pods_AllygatorShuttle.framework */; };
 		E4BCEEE408C1D4C7B6428B2D /* Pods_AllygatorShuttleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89BE92081D46CD8D56C56BB8 /* Pods_AllygatorShuttleTests.framework */; };
 /* End PBXBuildFile section */
@@ -65,9 +76,15 @@
 		6641C007A4880AB51CEBA927 /* Pods-AllygatorShuttleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllygatorShuttleTests.release.xcconfig"; path = "Target Support Files/Pods-AllygatorShuttleTests/Pods-AllygatorShuttleTests.release.xcconfig"; sourceTree = "<group>"; };
 		7C43F954FFBB4DEFBE79B895 /* Pods-AllygatorShuttleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllygatorShuttleTests.debug.xcconfig"; path = "Target Support Files/Pods-AllygatorShuttleTests/Pods-AllygatorShuttleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89BE92081D46CD8D56C56BB8 /* Pods_AllygatorShuttleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AllygatorShuttleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B307E28D2603F1930099B90A /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		B307E2982603F1F20099B90A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B307E2A52603F4280099B90A /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		B307E2AD2603F4610099B90A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../../Work/iyi-yasa-ios/iyi-yasa-ios/Resources/Assets.xcassets"; sourceTree = "<group>"; };
+		B307E2B22603F4720099B90A /* UIImage+Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Images.swift"; sourceTree = "<group>"; };
+		B307E2B32603F4720099B90A /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		B307E2B42603F4720099B90A /* UIColor+Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
 		B35CBDD32603AE9C0071DE9C /* AllygatorShuttle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AllygatorShuttle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B35CBDD62603AE9C0071DE9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B35CBDDF2603AE9E0071DE9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B35CBDE22603AE9E0071DE9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B35CBDE42603AE9E0071DE9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B35CBDE92603AE9E0071DE9C /* AllygatorShuttleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AllygatorShuttleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +117,11 @@
 		B35CBF242603CEF90071DE9C /* BookingOpenedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingOpenedData.swift; sourceTree = "<group>"; };
 		B35CBF412603D1120071DE9C /* SocketData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketData.swift; sourceTree = "<group>"; };
 		B35CBF462603D2300071DE9C /* Socket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
+		B35CBF612603E4CA0071DE9C /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		B35CBF902603E74C0071DE9C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		B35CBF952603E7750071DE9C /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
+		B35CBF9D2603E8360071DE9C /* MavenPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MavenPro-Regular.ttf"; sourceTree = "<group>"; };
+		B35CBF9E2603E8360071DE9C /* MavenPro-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MavenPro-Medium.ttf"; sourceTree = "<group>"; };
 		B45CD34935E0EC602D6FB42C /* Pods-AllygatorShuttle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllygatorShuttle.release.xcconfig"; path = "Target Support Files/Pods-AllygatorShuttle/Pods-AllygatorShuttle.release.xcconfig"; sourceTree = "<group>"; };
 		B49BAD2D213E44F2E9F7F0CF /* Pods_AllygatorShuttle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AllygatorShuttle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8642934FBFB64E047C4D81C /* Pods-AllygatorShuttle-AllygatorShuttleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllygatorShuttle-AllygatorShuttleUITests.debug.xcconfig"; path = "Target Support Files/Pods-AllygatorShuttle-AllygatorShuttleUITests/Pods-AllygatorShuttle-AllygatorShuttleUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -159,6 +181,8 @@
 		B35CBDCA2603AE9C0071DE9C = {
 			isa = PBXGroup;
 			children = (
+				B307E28D2603F1930099B90A /* swiftgen.yml */,
+				B35CBF612603E4CA0071DE9C /* .swiftlint.yml */,
 				B35CBDD52603AE9C0071DE9C /* AllygatorShuttle */,
 				B35CBDEC2603AE9E0071DE9C /* AllygatorShuttleTests */,
 				B35CBDF72603AE9E0071DE9C /* AllygatorShuttleUITests */,
@@ -233,7 +257,8 @@
 		B35CBE1C2603AFAA0071DE9C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B35CBDDF2603AE9E0071DE9C /* Assets.xcassets */,
+				B35CBF8F2603E7390071DE9C /* Fonts */,
+				B35CBF602603E3C20071DE9C /* Assets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -367,6 +392,30 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
+		B35CBF602603E3C20071DE9C /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				B307E2B32603F4720099B90A /* Assets.swift */,
+				B307E2B42603F4720099B90A /* UIColor+Colors.swift */,
+				B307E2B22603F4720099B90A /* UIImage+Images.swift */,
+				B307E2AD2603F4610099B90A /* Assets.xcassets */,
+				B35CBF902603E74C0071DE9C /* Colors.xcassets */,
+				B307E2982603F1F20099B90A /* Images.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		B35CBF8F2603E7390071DE9C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B307E2A52603F4280099B90A /* Fonts.swift */,
+				B35CBF9E2603E8360071DE9C /* MavenPro-Medium.ttf */,
+				B35CBF9D2603E8360071DE9C /* MavenPro-Regular.ttf */,
+				B35CBF952603E7750071DE9C /* UIFont+Extensions.swift */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -375,6 +424,8 @@
 			buildConfigurationList = B35CBDFD2603AE9E0071DE9C /* Build configuration list for PBXNativeTarget "AllygatorShuttle" */;
 			buildPhases = (
 				1DBF895DA7E740FADC8813EC /* [CP] Check Pods Manifest.lock */,
+				B35CBF572603E28D0071DE9C /* SwiftGen */,
+				B35CBF732603E5AB0071DE9C /* SwiftLint */,
 				B35CBDCF2603AE9C0071DE9C /* Sources */,
 				B35CBDD02603AE9C0071DE9C /* Frameworks */,
 				B35CBDD12603AE9C0071DE9C /* Resources */,
@@ -475,8 +526,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B35CBF912603E74C0071DE9C /* Colors.xcassets in Resources */,
+				B307E28E2603F1930099B90A /* swiftgen.yml in Resources */,
+				B307E2992603F1F20099B90A /* Images.xcassets in Resources */,
+				B35CBF9F2603E8360071DE9C /* MavenPro-Regular.ttf in Resources */,
+				B35CBFA02603E8360071DE9C /* MavenPro-Medium.ttf in Resources */,
+				B35CBF622603E4CA0071DE9C /* .swiftlint.yml in Resources */,
+				B307E2AE2603F4610099B90A /* Assets.xcassets in Resources */,
 				B35CBDE32603AE9E0071DE9C /* LaunchScreen.storyboard in Resources */,
-				B35CBDE02603AE9E0071DE9C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,6 +615,42 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B35CBF572603E28D0071DE9C /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ -f \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" ]]; then\n  \"${PODS_ROOT}/SwiftGen/bin/swiftgen\"\nelse\n  echo \"warning: SwiftGen is not installed. Run 'pod install --repo-update' to install it.\"\nfi\n";
+		};
+		B35CBF732603E5AB0071DE9C /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
 		BB4993496B1AC51D026608B8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -605,15 +698,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				B35CBEBA2603B2000071DE9C /* Transition.swift in Sources */,
+				B307E2B52603F4720099B90A /* UIImage+Images.swift in Sources */,
 				B35CBE5F2603B03E0071DE9C /* DataProviderProtocol.swift in Sources */,
 				B35CBE982603B15D0071DE9C /* BaseViewModel.swift in Sources */,
 				B35CBE712603B09B0071DE9C /* SplashRouter.swift in Sources */,
 				B35CBDD72603AE9C0071DE9C /* AppDelegate.swift in Sources */,
 				B35CBE732603B09B0071DE9C /* SplashViewModel.swift in Sources */,
+				B307E2B72603F4720099B90A /* UIColor+Colors.swift in Sources */,
 				B35CBEC72603B2270071DE9C /* PlaceOnWindowTransition.swift in Sources */,
 				B35CBE7B2603B0A90071DE9C /* SplashRoute.swift in Sources */,
 				B35CBF252603CEF90071DE9C /* BookingOpenedData.swift in Sources */,
 				B35CBE932603B1430071DE9C /* BaseNavigationController.swift in Sources */,
+				B307E2B62603F4720099B90A /* Assets.swift in Sources */,
 				B35CBE8E2603B1200071DE9C /* BaseViewController.swift in Sources */,
 				B35CBEA32603B1AE0071DE9C /* AppRouter.swift in Sources */,
 				B35CBEC22603B2160071DE9C /* PushTransition.swift in Sources */,
@@ -627,7 +723,9 @@
 				B35CBEB42603B1E30071DE9C /* Animator.swift in Sources */,
 				B35CBF472603D2300071DE9C /* Socket.swift in Sources */,
 				B35CBEF12603C8C20071DE9C /* SocketManager.swift in Sources */,
+				B35CBF962603E7750071DE9C /* UIFont+Extensions.swift in Sources */,
 				B35CBEAC2603B1C70071DE9C /* Router.swift in Sources */,
+				B307E2A62603F4280099B90A /* Fonts.swift in Sources */,
 				B35CBF0E2603CD5A0071DE9C /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -726,7 +824,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -781,7 +879,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -796,7 +894,7 @@
 			baseConfigurationReference = 10FF084E266E70E4BA117487 /* Pods-AllygatorShuttle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3MNXT4L4F4;
 				INFOPLIST_FILE = AllygatorShuttle/Configuration/Info.plist;
@@ -816,7 +914,7 @@
 			baseConfigurationReference = B45CD34935E0EC602D6FB42C /* Pods-AllygatorShuttle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3MNXT4L4F4;
 				INFOPLIST_FILE = AllygatorShuttle/Configuration/Info.plist;
