@@ -29,6 +29,14 @@
 		B35CBEBA2603B2000071DE9C /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBEB92603B2000071DE9C /* Transition.swift */; };
 		B35CBEC22603B2160071DE9C /* PushTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBEC12603B2160071DE9C /* PushTransition.swift */; };
 		B35CBEC72603B2270071DE9C /* PlaceOnWindowTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBEC62603B2270071DE9C /* PlaceOnWindowTransition.swift */; };
+		B35CBEF12603C8C20071DE9C /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBEF02603C8C20071DE9C /* SocketManager.swift */; };
+		B35CBEFC2603CA8B0071DE9C /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBEFB2603CA8B0071DE9C /* Network.swift */; };
+		B35CBF0E2603CD5A0071DE9C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBF0D2603CD5A0071DE9C /* Event.swift */; };
+		B35CBF162603CDFF0071DE9C /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBF152603CDFF0071DE9C /* Status.swift */; };
+		B35CBF1C2603CE8F0071DE9C /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBF1B2603CE8F0071DE9C /* Address.swift */; };
+		B35CBF252603CEF90071DE9C /* BookingOpenedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBF242603CEF90071DE9C /* BookingOpenedData.swift */; };
+		B35CBF422603D1120071DE9C /* SocketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBF412603D1120071DE9C /* SocketData.swift */; };
+		B35CBF472603D2300071DE9C /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBF462603D2300071DE9C /* Socket.swift */; };
 		CC8AFD9940C1A950F2009602 /* Pods_AllygatorShuttle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49BAD2D213E44F2E9F7F0CF /* Pods_AllygatorShuttle.framework */; };
 		E4BCEEE408C1D4C7B6428B2D /* Pods_AllygatorShuttleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89BE92081D46CD8D56C56BB8 /* Pods_AllygatorShuttleTests.framework */; };
 /* End PBXBuildFile section */
@@ -84,6 +92,14 @@
 		B35CBEB92603B2000071DE9C /* Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
 		B35CBEC12603B2160071DE9C /* PushTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushTransition.swift; sourceTree = "<group>"; };
 		B35CBEC62603B2270071DE9C /* PlaceOnWindowTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOnWindowTransition.swift; sourceTree = "<group>"; };
+		B35CBEF02603C8C20071DE9C /* SocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
+		B35CBEFB2603CA8B0071DE9C /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		B35CBF0D2603CD5A0071DE9C /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		B35CBF152603CDFF0071DE9C /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		B35CBF1B2603CE8F0071DE9C /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		B35CBF242603CEF90071DE9C /* BookingOpenedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingOpenedData.swift; sourceTree = "<group>"; };
+		B35CBF412603D1120071DE9C /* SocketData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketData.swift; sourceTree = "<group>"; };
+		B35CBF462603D2300071DE9C /* Socket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
 		B45CD34935E0EC602D6FB42C /* Pods-AllygatorShuttle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllygatorShuttle.release.xcconfig"; path = "Target Support Files/Pods-AllygatorShuttle/Pods-AllygatorShuttle.release.xcconfig"; sourceTree = "<group>"; };
 		B49BAD2D213E44F2E9F7F0CF /* Pods_AllygatorShuttle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AllygatorShuttle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8642934FBFB64E047C4D81C /* Pods-AllygatorShuttle-AllygatorShuttleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllygatorShuttle-AllygatorShuttleUITests.debug.xcconfig"; path = "Target Support Files/Pods-AllygatorShuttle-AllygatorShuttleUITests/Pods-AllygatorShuttle-AllygatorShuttleUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -165,6 +181,8 @@
 		B35CBDD52603AE9C0071DE9C /* AllygatorShuttle */ = {
 			isa = PBXGroup;
 			children = (
+				B35CBEF82603CA280071DE9C /* Entity */,
+				B35CBEEF2603C8970071DE9C /* WebSocket */,
 				B35CBEA12603B1A10071DE9C /* Router */,
 				B35CBE6D2603B07A0071DE9C /* Constants */,
 				B35CBE5B2603B0160071DE9C /* DataProvider */,
@@ -278,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				B35CBE9C2603B1740071DE9C /* Closures.swift */,
+				B35CBEFB2603CA8B0071DE9C /* Network.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -309,6 +328,43 @@
 				B35CBEC62603B2270071DE9C /* PlaceOnWindowTransition.swift */,
 			);
 			path = Transitions;
+			sourceTree = "<group>";
+		};
+		B35CBEEF2603C8970071DE9C /* WebSocket */ = {
+			isa = PBXGroup;
+			children = (
+				B35CBEF02603C8C20071DE9C /* SocketManager.swift */,
+			);
+			path = WebSocket;
+			sourceTree = "<group>";
+		};
+		B35CBEF82603CA280071DE9C /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				B35CBEFA2603CA390071DE9C /* Enum */,
+				B35CBEF92603CA340071DE9C /* Model */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		B35CBEF92603CA340071DE9C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B35CBF1B2603CE8F0071DE9C /* Address.swift */,
+				B35CBF242603CEF90071DE9C /* BookingOpenedData.swift */,
+				B35CBF462603D2300071DE9C /* Socket.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B35CBEFA2603CA390071DE9C /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				B35CBF0D2603CD5A0071DE9C /* Event.swift */,
+				B35CBF152603CDFF0071DE9C /* Status.swift */,
+				B35CBF412603D1120071DE9C /* SocketData.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -556,15 +612,23 @@
 				B35CBE732603B09B0071DE9C /* SplashViewModel.swift in Sources */,
 				B35CBEC72603B2270071DE9C /* PlaceOnWindowTransition.swift in Sources */,
 				B35CBE7B2603B0A90071DE9C /* SplashRoute.swift in Sources */,
+				B35CBF252603CEF90071DE9C /* BookingOpenedData.swift in Sources */,
 				B35CBE932603B1430071DE9C /* BaseNavigationController.swift in Sources */,
 				B35CBE8E2603B1200071DE9C /* BaseViewController.swift in Sources */,
 				B35CBEA32603B1AE0071DE9C /* AppRouter.swift in Sources */,
 				B35CBEC22603B2160071DE9C /* PushTransition.swift in Sources */,
+				B35CBEFC2603CA8B0071DE9C /* Network.swift in Sources */,
 				B35CBE672603B0490071DE9C /* APIDataProvider.swift in Sources */,
 				B35CBE722603B09B0071DE9C /* SplashViewController.swift in Sources */,
+				B35CBF422603D1120071DE9C /* SocketData.swift in Sources */,
+				B35CBF162603CDFF0071DE9C /* Status.swift in Sources */,
+				B35CBF1C2603CE8F0071DE9C /* Address.swift in Sources */,
 				B35CBE9D2603B1740071DE9C /* Closures.swift in Sources */,
 				B35CBEB42603B1E30071DE9C /* Animator.swift in Sources */,
+				B35CBF472603D2300071DE9C /* Socket.swift in Sources */,
+				B35CBEF12603C8C20071DE9C /* SocketManager.swift in Sources */,
 				B35CBEAC2603B1C70071DE9C /* Router.swift in Sources */,
+				B35CBF0E2603CD5A0071DE9C /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

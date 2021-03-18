@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import Starscream
 
 final class SplashViewController: BaseViewController<SplashViewModel> {
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("yoo")
+        SocketManager.shared.connect()
     }
     
 }
