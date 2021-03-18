@@ -1,0 +1,6 @@
+framework module Pods_AllygatorShuttle_AllygatorShuttleUITests {
+  umbrella header "Pods-AllygatorShuttle-AllygatorShuttleUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

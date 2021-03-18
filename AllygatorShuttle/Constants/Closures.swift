@@ -5,4 +5,4 @@
 //  Created by Burak Kaya on 18.03.2021.
 //
 
-import Foundation
+public typealias VoidClosure = (() -> Void)

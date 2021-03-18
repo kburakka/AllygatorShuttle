@@ -5,6 +5,8 @@
 //  Created by Burak Kaya on 18.03.2021.
 //
 
+import UIKit
+
 protocol SplashRoute {
     func pushSplash()
 }
@@ -15,11 +17,12 @@ extension SplashRoute where Self: RouterProtocol {
         let router = SplashRouter()
         let viewModel = SplashViewModel(router: router)
         let viewController = SplashViewController(viewModel: viewModel)
-        
-        let transition = PushTransition()
+        let navigationController = UINavigationController(rootViewController: viewController)
+
+        let transition = PlaceOnWindowTransition()
         router.viewController = viewController
         router.openTransition = transition
         
-        open(viewController, transition: transition)
+        open(navigationController, transition: transition)
     }
 }
