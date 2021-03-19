@@ -5,14 +5,22 @@
 //  Created by Burak Kaya on 18.03.2021.
 //
 
-import Foundation
+import UIKit
 
-protocol SplashViewDataSource {}
+protocol SplashViewDataSource {
+    var logoImage: UIImage { get }
+}
 
-protocol SplashViewEventSource {}
+protocol SplashViewEventSource {
+    func showHomeScreen()
+}
 
 protocol SplashViewProtocol: SplashViewDataSource, SplashViewEventSource {}
 
 final class SplashViewModel: BaseViewModel<SplashRouter>, SplashViewProtocol {
+    var logoImage: UIImage = .imgLogo
     
+    func showHomeScreen() {
+        router.pushHome()
+    }
 }
