@@ -5,4 +5,6 @@
 //  Created by Burak Kaya on 19.03.2021.
 //
 
-final class HomeRouter: Router {}
+final class HomeRouter: Router, HomeRouter.Routes {
+    typealias Routes = RideFinishRoute
+}

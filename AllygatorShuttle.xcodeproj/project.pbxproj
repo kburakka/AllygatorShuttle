@@ -22,6 +22,15 @@
 		B33F767E2604EEF700B81A39 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F767D2604EEF700B81A39 /* UIImage+Extension.swift */; };
 		B33F76872604F36D00B81A39 /* AnnotationViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F76862604F36D00B81A39 /* AnnotationViews.swift */; };
 		B33F76A026051F7200B81A39 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F769F26051F7200B81A39 /* UIView+Extension.swift */; };
+		B33F76A826053E8100B81A39 /* MKMapView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F76A726053E8100B81A39 /* MKMapView+Extension.swift */; };
+		B33F76B526054A4D00B81A39 /* BaseAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F76B426054A4D00B81A39 /* BaseAnnotation.swift */; };
+		B33F76C026054AC600B81A39 /* RideFinishRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F76BD26054AC600B81A39 /* RideFinishRouter.swift */; };
+		B33F76C126054AC600B81A39 /* RideFinishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F76BE26054AC600B81A39 /* RideFinishViewController.swift */; };
+		B33F76C226054AC600B81A39 /* RideFinishViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F76BF26054AC600B81A39 /* RideFinishViewModel.swift */; };
+		B33F76CA26054AD600B81A39 /* RideFinishRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F76C926054AD600B81A39 /* RideFinishRoute.swift */; };
+		B33F76CF26054C6000B81A39 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F76CE26054C6000B81A39 /* UIStackView+Extension.swift */; };
+		B33F76D426054DCB00B81A39 /* ModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F76D326054DCB00B81A39 /* ModalTransition.swift */; };
+		B33F76D92605540F00B81A39 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F76D82605540F00B81A39 /* UIApplication+Extension.swift */; };
 		B35CBDD72603AE9C0071DE9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBDD62603AE9C0071DE9C /* AppDelegate.swift */; };
 		B35CBDE32603AE9E0071DE9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B35CBDE12603AE9E0071DE9C /* LaunchScreen.storyboard */; };
 		B35CBDEE2603AE9E0071DE9C /* AllygatorShuttleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBDED2603AE9E0071DE9C /* AllygatorShuttleTests.swift */; };
@@ -54,7 +63,6 @@
 		B35CBF912603E74C0071DE9C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B35CBF902603E74C0071DE9C /* Colors.xcassets */; };
 		B35CBF962603E7750071DE9C /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBF952603E7750071DE9C /* UIFont+Extensions.swift */; };
 		B35CBF9F2603E8360071DE9C /* MavenPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B35CBF9D2603E8360071DE9C /* MavenPro-Regular.ttf */; };
-		B35CBFA02603E8360071DE9C /* MavenPro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B35CBF9E2603E8360071DE9C /* MavenPro-Medium.ttf */; };
 		CC8AFD9940C1A950F2009602 /* Pods_AllygatorShuttle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B49BAD2D213E44F2E9F7F0CF /* Pods_AllygatorShuttle.framework */; };
 		E4BCEEE408C1D4C7B6428B2D /* Pods_AllygatorShuttleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89BE92081D46CD8D56C56BB8 /* Pods_AllygatorShuttleTests.framework */; };
 /* End PBXBuildFile section */
@@ -97,6 +105,15 @@
 		B33F767D2604EEF700B81A39 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		B33F76862604F36D00B81A39 /* AnnotationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationViews.swift; sourceTree = "<group>"; };
 		B33F769F26051F7200B81A39 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		B33F76A726053E8100B81A39 /* MKMapView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+Extension.swift"; sourceTree = "<group>"; };
+		B33F76B426054A4D00B81A39 /* BaseAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAnnotation.swift; sourceTree = "<group>"; };
+		B33F76BD26054AC600B81A39 /* RideFinishRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideFinishRouter.swift; sourceTree = "<group>"; };
+		B33F76BE26054AC600B81A39 /* RideFinishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideFinishViewController.swift; sourceTree = "<group>"; };
+		B33F76BF26054AC600B81A39 /* RideFinishViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideFinishViewModel.swift; sourceTree = "<group>"; };
+		B33F76C926054AD600B81A39 /* RideFinishRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideFinishRoute.swift; sourceTree = "<group>"; };
+		B33F76CE26054C6000B81A39 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
+		B33F76D326054DCB00B81A39 /* ModalTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTransition.swift; sourceTree = "<group>"; };
+		B33F76D82605540F00B81A39 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		B35CBDD32603AE9C0071DE9C /* AllygatorShuttle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AllygatorShuttle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B35CBDD62603AE9C0071DE9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B35CBDE22603AE9E0071DE9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -135,7 +152,6 @@
 		B35CBF902603E74C0071DE9C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		B35CBF952603E7750071DE9C /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		B35CBF9D2603E8360071DE9C /* MavenPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MavenPro-Regular.ttf"; sourceTree = "<group>"; };
-		B35CBF9E2603E8360071DE9C /* MavenPro-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MavenPro-Medium.ttf"; sourceTree = "<group>"; };
 		B45CD34935E0EC602D6FB42C /* Pods-AllygatorShuttle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllygatorShuttle.release.xcconfig"; path = "Target Support Files/Pods-AllygatorShuttle/Pods-AllygatorShuttle.release.xcconfig"; sourceTree = "<group>"; };
 		B49BAD2D213E44F2E9F7F0CF /* Pods_AllygatorShuttle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AllygatorShuttle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8642934FBFB64E047C4D81C /* Pods-AllygatorShuttle-AllygatorShuttleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllygatorShuttle-AllygatorShuttleUITests.debug.xcconfig"; path = "Target Support Files/Pods-AllygatorShuttle-AllygatorShuttleUITests/Pods-AllygatorShuttle-AllygatorShuttleUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -208,15 +224,31 @@
 			children = (
 				B33F767D2604EEF700B81A39 /* UIImage+Extension.swift */,
 				B33F769F26051F7200B81A39 /* UIView+Extension.swift */,
+				B33F76A726053E8100B81A39 /* MKMapView+Extension.swift */,
+				B33F76CE26054C6000B81A39 /* UIStackView+Extension.swift */,
+				B33F76D82605540F00B81A39 /* UIApplication+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		B33F769E26051E4600B81A39 /* CustomView */ = {
+		B33F769E26051E4600B81A39 /* CustomComponents */ = {
 			isa = PBXGroup;
 			children = (
+				B33F76BC26054A8500B81A39 /* RideFinishPopup */,
+				B33F76B426054A4D00B81A39 /* BaseAnnotation.swift */,
 			);
-			path = CustomView;
+			path = CustomComponents;
+			sourceTree = "<group>";
+		};
+		B33F76BC26054A8500B81A39 /* RideFinishPopup */ = {
+			isa = PBXGroup;
+			children = (
+				B33F76BD26054AC600B81A39 /* RideFinishRouter.swift */,
+				B33F76BE26054AC600B81A39 /* RideFinishViewController.swift */,
+				B33F76BF26054AC600B81A39 /* RideFinishViewModel.swift */,
+				B33F76C926054AD600B81A39 /* RideFinishRoute.swift */,
+			);
+			path = RideFinishPopup;
 			sourceTree = "<group>";
 		};
 		B35CBDCA2603AE9C0071DE9C = {
@@ -246,7 +278,7 @@
 		B35CBDD52603AE9C0071DE9C /* AllygatorShuttle */ = {
 			isa = PBXGroup;
 			children = (
-				B33F769E26051E4600B81A39 /* CustomView */,
+				B33F769E26051E4600B81A39 /* CustomComponents */,
 				B33F767B2604EECA00B81A39 /* Extension */,
 				B35CBEF82603CA280071DE9C /* Entity */,
 				B35CBEEF2603C8970071DE9C /* WebSocket */,
@@ -395,6 +427,7 @@
 				B35CBEB92603B2000071DE9C /* Transition.swift */,
 				B35CBEC12603B2160071DE9C /* PushTransition.swift */,
 				B35CBEC62603B2270071DE9C /* PlaceOnWindowTransition.swift */,
+				B33F76D326054DCB00B81A39 /* ModalTransition.swift */,
 			);
 			path = Transitions;
 			sourceTree = "<group>";
@@ -454,7 +487,6 @@
 			isa = PBXGroup;
 			children = (
 				B307E2A52603F4280099B90A /* Fonts.swift */,
-				B35CBF9E2603E8360071DE9C /* MavenPro-Medium.ttf */,
 				B35CBF9D2603E8360071DE9C /* MavenPro-Regular.ttf */,
 				B35CBF952603E7750071DE9C /* UIFont+Extensions.swift */,
 			);
@@ -575,7 +607,6 @@
 				B307E28E2603F1930099B90A /* swiftgen.yml in Resources */,
 				B307E2992603F1F20099B90A /* Images.xcassets in Resources */,
 				B35CBF9F2603E8360071DE9C /* MavenPro-Regular.ttf in Resources */,
-				B35CBFA02603E8360071DE9C /* MavenPro-Medium.ttf in Resources */,
 				B35CBF622603E4CA0071DE9C /* .swiftlint.yml in Resources */,
 				B307E2AE2603F4610099B90A /* Assets.xcassets in Resources */,
 				B35CBDE32603AE9E0071DE9C /* LaunchScreen.storyboard in Resources */,
@@ -749,29 +780,37 @@
 				B35CBE982603B15D0071DE9C /* BaseViewModel.swift in Sources */,
 				B35CBE712603B09B0071DE9C /* SplashRouter.swift in Sources */,
 				B35CBDD72603AE9C0071DE9C /* AppDelegate.swift in Sources */,
+				B33F76B526054A4D00B81A39 /* BaseAnnotation.swift in Sources */,
 				B35CBE732603B09B0071DE9C /* SplashViewModel.swift in Sources */,
 				B307E2B72603F4720099B90A /* UIColor+Colors.swift in Sources */,
 				B35CBEC72603B2270071DE9C /* PlaceOnWindowTransition.swift in Sources */,
+				B33F76CA26054AD600B81A39 /* RideFinishRoute.swift in Sources */,
 				B35CBE7B2603B0A90071DE9C /* SplashRoute.swift in Sources */,
 				B35CBF252603CEF90071DE9C /* BookingOpenedData.swift in Sources */,
 				B35CBE932603B1430071DE9C /* BaseNavigationController.swift in Sources */,
 				B33F76612604982B00B81A39 /* HomeRouter.swift in Sources */,
 				B307E2B62603F4720099B90A /* Assets.swift in Sources */,
 				B35CBE8E2603B1200071DE9C /* BaseViewController.swift in Sources */,
+				B33F76D426054DCB00B81A39 /* ModalTransition.swift in Sources */,
 				B35CBEA32603B1AE0071DE9C /* AppRouter.swift in Sources */,
 				B35CBEC22603B2160071DE9C /* PushTransition.swift in Sources */,
 				B33F766B2604983A00B81A39 /* HomeRoute.swift in Sources */,
+				B33F76CF26054C6000B81A39 /* UIStackView+Extension.swift in Sources */,
 				B35CBEFC2603CA8B0071DE9C /* Network.swift in Sources */,
 				B35CBE672603B0490071DE9C /* APIDataProvider.swift in Sources */,
 				B35CBE722603B09B0071DE9C /* SplashViewController.swift in Sources */,
+				B33F76C226054AC600B81A39 /* RideFinishViewModel.swift in Sources */,
 				B33F767E2604EEF700B81A39 /* UIImage+Extension.swift in Sources */,
+				B33F76D92605540F00B81A39 /* UIApplication+Extension.swift in Sources */,
 				B35CBF422603D1120071DE9C /* SocketData.swift in Sources */,
 				B35CBF162603CDFF0071DE9C /* Status.swift in Sources */,
+				B33F76C126054AC600B81A39 /* RideFinishViewController.swift in Sources */,
 				B35CBF1C2603CE8F0071DE9C /* Address.swift in Sources */,
 				B35CBE9D2603B1740071DE9C /* Closures.swift in Sources */,
 				B35CBEB42603B1E30071DE9C /* Animator.swift in Sources */,
 				B35CBF472603D2300071DE9C /* Socket.swift in Sources */,
 				B35CBEF12603C8C20071DE9C /* SocketManager.swift in Sources */,
+				B33F76C026054AC600B81A39 /* RideFinishRouter.swift in Sources */,
 				B33F76A026051F7200B81A39 /* UIView+Extension.swift in Sources */,
 				B33F76622604982B00B81A39 /* HomeViewController.swift in Sources */,
 				B35CBF962603E7750071DE9C /* UIFont+Extensions.swift in Sources */,
@@ -779,6 +818,7 @@
 				B307E2A62603F4280099B90A /* Fonts.swift in Sources */,
 				B33F76872604F36D00B81A39 /* AnnotationViews.swift in Sources */,
 				B35CBF0E2603CD5A0071DE9C /* Event.swift in Sources */,
+				B33F76A826053E8100B81A39 /* MKMapView+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

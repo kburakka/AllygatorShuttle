@@ -9,10 +9,14 @@ import Foundation
 
 protocol HomeViewDataSource {}
 
-protocol HomeViewEventSource {}
+protocol HomeViewEventSource {
+    func showRideFinishPopup(closeHandler: VoidClosure?)
+}
 
 protocol HomeViewProtocol: HomeViewDataSource, HomeViewEventSource {}
 
 final class HomeViewModel: BaseViewModel<HomeRouter>, HomeViewProtocol {
-    
+    func showRideFinishPopup(closeHandler: VoidClosure?) {
+        router.presentWalkFinishPopup(closeHandler: closeHandler)
+    }
 }

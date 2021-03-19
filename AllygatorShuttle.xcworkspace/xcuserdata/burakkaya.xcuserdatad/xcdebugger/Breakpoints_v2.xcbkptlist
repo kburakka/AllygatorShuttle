@@ -144,8 +144,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "42"
             endingLineNumber = "42"
-            landmarkName = "SplashViewController"
-            landmarkType = "3">
+            landmarkName = "setupLayouts()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -160,7 +160,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
             endingLineNumber = "41"
-            landmarkName = "setupViews()"
+            landmarkName = "setupLayouts()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -190,8 +190,8 @@
             filePath = "AllygatorShuttle/Scenes/Home/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "HomeViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -206,10 +206,74 @@
             filePath = "AllygatorShuttle/Scenes/Home/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "setupLayouts()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "69A4E663-1F56-47F1-A50B-71040D9DE3A5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AllygatorShuttle/Extension/MKMapView+Extension.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "addAnnotationIfNotExist(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5224C288-5F4F-4A08-BD50-5E994C8A2C88"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AllygatorShuttle/Extension/Array+Extension.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "10"
+            endingLineNumber = "10"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "5224C288-5F4F-4A08-BD50-5E994C8A2C88 - 9a86328d2610edf4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(extension in AllygatorShuttle):Swift.Array.contains&lt;A where A1: Swift.Equatable&gt;(obj: A1) -&gt; Swift.Bool"
+                  moduleName = "AllygatorShuttle"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/burakkaya/Desktop/Personal/AllygatorShuttle/AllygatorShuttle/Extension/Array+Extension.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "10"
+                  endingLineNumber = "10"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "5224C288-5F4F-4A08-BD50-5E994C8A2C88 - c60764bfd5aba6dc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (A) -&gt; Swift.Bool in (extension in AllygatorShuttle):Swift.Array.contains&lt;A where A1: Swift.Equatable&gt;(obj: A1) -&gt; Swift.Bool"
+                  moduleName = "AllygatorShuttle"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/burakkaya/Desktop/Personal/AllygatorShuttle/AllygatorShuttle/Extension/Array+Extension.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "10"
+                  endingLineNumber = "10"
+                  offsetFromSymbolStart = "184">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -22,6 +22,7 @@ public enum Asset {
   public enum Colors {
   }
   public enum Images {
+    public static let imgDone = ImageAsset(name: "img_done")
     public static let imgFinish = ImageAsset(name: "img_finish")
     public static let imgLogo = ImageAsset(name: "img_logo")
     public static let imgStart = ImageAsset(name: "img_start")
