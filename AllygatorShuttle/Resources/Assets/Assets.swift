@@ -22,7 +22,11 @@ public enum Asset {
   public enum Colors {
   }
   public enum Images {
+    public static let imgFinish = ImageAsset(name: "img_finish")
     public static let imgLogo = ImageAsset(name: "img_logo")
+    public static let imgStart = ImageAsset(name: "img_start")
+    public static let imgStation = ImageAsset(name: "img_station")
+    public static let imgVehicle = ImageAsset(name: "img_vehicle")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
