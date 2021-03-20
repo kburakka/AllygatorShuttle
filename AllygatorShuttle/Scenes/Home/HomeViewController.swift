@@ -34,12 +34,14 @@ protocol HomeViewControllerProtocol {
 }
 
 final class HomeViewController: BaseViewController<HomeViewModel>, HomeViewControllerProtocol {
-    
-    var isConectWebSocket = false
-
-    var isFirstTimeVehicleUpdate = true
-    
     var mapView = MKMapView()
+    var vehicleAnnotation = BaseAnnotation(image: .imgVehicle)
+    var pickupAnnotation = BaseAnnotation(image: .imgStart)
+    var dropoffAnnotation = BaseAnnotation(image: .imgFinish)
+    var isConectWebSocket = false
+    var isFirstTimeVehicleUpdate = true
+    var stationList: [BaseAnnotation] = []
+    
     
     var cardView: UIView = {
         let view = UIView(backgroundColor: .white, cornerRadius: 19)
@@ -76,26 +78,19 @@ final class HomeViewController: BaseViewController<HomeViewModel>, HomeViewContr
                            distribution: .fill)
     }()
     
-    var vehicleAnnotation = BaseAnnotation(image: .imgVehicle)
-    
-    var pickupAnnotation = BaseAnnotation(image: .imgStart)
-    
-    var dropoffAnnotation = BaseAnnotation(image: .imgFinish)
-    
     var isInRide = false {
-            didSet {
-                if isInRide {
-                    socketButton.setTitle(viewModel.finishTitle, for: .normal)
-                } else {
-                    isFirstTimeVehicleUpdate = true
-                    statusLabel.text = nil
-                    socketButton.setTitle(viewModel.startTitle, for: .normal)
-                    mapView.removeAllAnnotations()
-                }
+        didSet {
+            if isInRide {
+                socketButton.setTitle(viewModel.finishTitle, for: .normal)
+            } else {
+                isFirstTimeVehicleUpdate = true
+                statusLabel.text = nil
+                socketButton.setTitle(viewModel.startTitle, for: .normal)
+                mapView.removeAllAnnotations()
             }
+        }
     }
     
-    var stationList: [BaseAnnotation] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
