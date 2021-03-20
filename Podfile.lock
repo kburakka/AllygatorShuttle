@@ -1,10 +1,12 @@
 PODS:
+  - lottie-ios (3.2.1)
   - Starscream (4.0.4)
   - SwiftGen (6.4.0)
   - SwiftLint (0.43.1)
   - TinyConstraints (4.0.1)
 
 DEPENDENCIES:
+  - lottie-ios (~> 3.2)
   - Starscream (~> 4.0)
   - SwiftGen (~> 6.0)
   - SwiftLint (~> 0.42)
@@ -12,17 +14,19 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - lottie-ios
     - Starscream
     - SwiftGen
     - SwiftLint
     - TinyConstraints
 
 SPEC CHECKSUMS:
+  lottie-ios: 106e92eaf11fbed0a76590b4cdb9b5ec26123ff7
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
   SwiftGen: 67860cc7c3cfc2ed25b9b74cfd55495fc89f9108
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
 
-PODFILE CHECKSUM: 922405ac8fef09e306e61c75a54470b2ddcb276f
+PODFILE CHECKSUM: e23f03429adf54e209c8021f8177a1b7ea5bd032
 
 COCOAPODS: 1.10.1

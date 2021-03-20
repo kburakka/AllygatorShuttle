@@ -10,7 +10,8 @@ target 'AllygatorShuttle' do
   pod 'Starscream', '~> 4.0'
   pod 'SwiftLint', '~> 0.42'
   pod 'SwiftGen', '~> 6.0'
-  
+  pod 'lottie-ios', '~> 3.2'
+
   target 'AllygatorShuttleTests' do
     inherit! :search_paths
     # Pods for testing

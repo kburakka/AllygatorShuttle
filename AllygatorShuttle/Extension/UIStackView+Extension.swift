@@ -32,10 +32,4 @@ extension UIStackView {
         }
     }
     
-    func removeArrangedSubviews() {
-        for view in arrangedSubviews {
-            removeArrangedSubview(view)
-        }
-    }
-    
 }

@@ -6,5 +6,5 @@
 //
 
 class Network {
-    public static let webSocketUrl = "wss://d2d-frontend-code-challenge.herokuapp.com"
+    static let webSocketUrl = "wss://d2d-frontend-code-challenge.herokuapp.com"
 }

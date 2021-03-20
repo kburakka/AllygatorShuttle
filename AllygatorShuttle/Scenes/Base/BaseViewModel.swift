@@ -7,47 +7,31 @@
 
 import Foundation
 
-protocol BaseViewModelDataSource: AnyObject {}
+protocol BaseViewModelDataSource: AnyObject { }
 
-protocol BaseViewModelEventSource: AnyObject {
-    var showActivityIndicatorView: VoidClosure? { get set }
-    var hideActivityIndicatorView: VoidClosure? { get set }
-    
-    var showLoading: VoidClosure? { get set }
-    var hideLoading: VoidClosure? { get set }
-}
+protocol BaseViewModelEventSource: AnyObject { }
 
 protocol BaseViewModelProtocol: BaseViewModelDataSource, BaseViewModelEventSource {
-    func viewDidLoad()
-    func viewWillAppear()
-    func viewDidAppear()
-    func viewWillDisappear()
-    func viewDidDisappear()
+    func showLoading()
+    func hideLoading()
 }
 
 class BaseViewModel<R: Router>: BaseViewModelProtocol {
-    
-    var showActivityIndicatorView: VoidClosure?
-    var hideActivityIndicatorView: VoidClosure?
-    
-    var showLoading: VoidClosure?
-    var hideLoading: VoidClosure?
-    
+    private var hud = LoadingHelper("Loading")
+
     let router: R
-    let dataProvider: DataProviderProtocol
+    let socketManager: SocketManager
     
-    init(router: R, dataProvider: DataProviderProtocol = APIDataProvider.shared) {
+    init(router: R, socketManager: SocketManager = SocketManager.shared) {
         self.router = router
-        self.dataProvider = dataProvider
+        self.socketManager = socketManager
     }
     
-    func viewDidLoad() {}
+    func showLoading() {
+        hud.showHUD()
+    }
     
-    func viewDidAppear() {}
-    
-    func viewWillAppear() {}
-    
-    func viewWillDisappear() {}
-    
-    func viewDidDisappear() {}
+    func hideLoading() {
+        hud.stopHUD()
+    }
 }

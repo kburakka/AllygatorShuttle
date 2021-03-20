@@ -7,16 +7,27 @@
 
 import Foundation
 
-protocol HomeViewDataSource {}
+protocol HomeViewDataSource {
+    var rideFinishTitle: String { get }
+    var errorTitle: String { get }
+    var startTitle: String { get }
+    var finishTitle: String { get }
+}
 
 protocol HomeViewEventSource {
-    func showRideFinishPopup(closeHandler: VoidClosure?)
+    func showPopup(title: String, closeHandler: VoidClosure?)
+
 }
 
 protocol HomeViewProtocol: HomeViewDataSource, HomeViewEventSource {}
 
 final class HomeViewModel: BaseViewModel<HomeRouter>, HomeViewProtocol {
-    func showRideFinishPopup(closeHandler: VoidClosure?) {
-        router.presentWalkFinishPopup(closeHandler: closeHandler)
+    var startTitle: String = "Start ride"
+    var finishTitle: String = "Finish ride"
+    var rideFinishTitle: String = "Your ride is finished!"
+    var errorTitle: String = "Somethhing went wrong!"
+    
+    func showPopup(title: String, closeHandler: VoidClosure?) {
+        router.presentPopupView(closeHandler: closeHandler, title: title)
     }
 }

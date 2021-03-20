@@ -19,8 +19,8 @@ public typealias Font = FontConvertible.Font
 // swiftlint:disable identifier_name line_length type_body_length
 public enum FontFamily {
   public enum MavenPro {
-    public static let regular = FontConvertible(name: "MavenPro-Regular", family: "Maven Pro", path: "MavenPro-Regular.ttf")
-    public static let all: [FontConvertible] = [regular]
+    public static let medium = FontConvertible(name: "MavenPro-Medium", family: "Maven Pro", path: "MavenPro-Medium.ttf")
+    public static let all: [FontConvertible] = [medium]
   }
   public static let allCustomFonts: [FontConvertible] = [MavenPro.all].flatMap { $0 }
   public static func registerAllCustomFonts() {

@@ -8,4 +8,4 @@
 import Starscream
 
 public typealias VoidClosure = (() -> Void)
-public typealias EventClosure = ((WebSocketEvent) -> Void)
+public typealias EventClosure = ((WebSocketEvent?) -> Void)

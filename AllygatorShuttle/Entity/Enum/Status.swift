@@ -9,4 +9,15 @@ enum Status: String, Decodable {
     case waitingForPickup
     case inVehicle
     case droppedOff
+    
+    func getAlias() -> String {
+        switch self {
+        case .waitingForPickup:
+            return "Waiting for pickup!"
+        case .inVehicle:
+            return "In vehicle"
+        case .droppedOff:
+            return "Dropped off"
+        }
+    }
 }

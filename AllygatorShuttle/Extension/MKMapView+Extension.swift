@@ -12,9 +12,5 @@ extension MKMapView {
         if view(for: annotation) == nil {
             addAnnotation(annotation)
         }
-        
-//        if !annotations.contains(where: { $0 == annotation}) {
-//            addAnnotation(annotation)
-//        }
     }
 }

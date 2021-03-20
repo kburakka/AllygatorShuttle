@@ -12,7 +12,8 @@ import Starscream
 final class HomeViewController: BaseViewController<HomeViewModel> {
     
     private let mapView = MKMapView()
-    private lazy var cardView: UIView = {
+    
+    private let cardView: UIView = {
         let view = UIView(backgroundColor: .white, cornerRadius: 19)
         view.addShadow(radius: 14,
                        offset: CGSize(width: 0, height: -9),
@@ -20,25 +21,47 @@ final class HomeViewController: BaseViewController<HomeViewModel> {
         return view
     }()
     
-    private let startButton: UIButton = {
+    private let socketButton: UIButton = {
         let button = UIButton()
         button.cornerRadius = 6
-        button.titleLabel?.font = .mavenProRegularLarge
-        button.backgroundColor = .darkGray
-        button.setTitle("Start Journey", for: .normal)
-        button.addTarget(self, action: #selector(startAction), for: .touchUpInside)
+        button.titleLabel?.font = .mavenProMediumLarge
+        button.backgroundColor = .coal
+        button.titleLabel?.textColor = .calcite
+        button.setTitle("Start Ride", for: .normal)
+        button.addTarget(self, action: #selector(socketAction), for: .touchUpInside)
         return button
     }()
     
+    private let statusLabel: UILabel = {
+        let label = UILabel()
+        label.font = .mavenProMediumXXLarge
+        label.textColor = .coal
+        return label
+    }()
+    
+    private lazy var stackView: UIStackView = {
+        return UIStackView(arrangedSubviews: [statusLabel,
+                                              socketButton],
+                           axis: .vertical,
+                           spacing: 15,
+                           alignment: .center,
+                           distribution: .fill)
+    }()
+    
     private let vehicleAnnotation = BaseAnnotation(image: .imgVehicle)
-    private let startAnnotation = BaseAnnotation(image: .imgStart)
-    private let finishAnnotation = BaseAnnotation(image: .imgFinish)
+    private let pickupAnnotation = BaseAnnotation(image: .imgStart)
+    private let dropoffAnnotation = BaseAnnotation(image: .imgFinish)
     private var stationList: [BaseAnnotation] = []
-    private var isFirstVehicleUpdate = true
+    private var isFirstTimeVehicleUpdate = true
     
     private var isInRide = false {
         didSet {
-            if !isInRide {
+            if isInRide {
+                socketButton.setTitle("Finish Ride", for: .normal)
+            } else {
+                isFirstTimeVehicleUpdate = true
+                statusLabel.text = nil
+                socketButton.setTitle("Start Ride", for: .normal)
                 removeAllAnnotations()
             }
         }
@@ -47,116 +70,128 @@ final class HomeViewController: BaseViewController<HomeViewModel> {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-
-        viewModel.showRideFinishPopup {
-            if let popupView = UIApplication.topViewController() {
-                popupView.dismiss(animated: true)
-            }
-        }
-        SocketManager.shared.eventClosure = { event in
-            switch event {
-            case .connected(let headers):
-                print("websocket is connected: \(headers)")
-            case .disconnected(let reason, let code):
-                print("websocket is disconnected: \(reason) with code: \(code)")
-            case .text(let string):
-                self.parseSocketEvent(socket: string)
-            case .binary(let data):
-                print("Received data: \(data.count)")
-            case .ping(_):
-                print("ping")
-            case .pong(_):
-                print("pong")
-            case .viabilityChanged(_):
-                print("viabilityChanged")
-            case .reconnectSuggested(_):
-                print("reconnectSuggested")
-            case .cancelled:
-                print("cancelled")
-            case .error(let error):
-                print("error")
-                self.handleError(error)
-            }
-
-        }
+        setWebSocket()
     }
     
-    func handleError(_ error: Error?) {
-        if let error = error as? WSError {
-            print("websocket encountered an error: \(error.message)")
-        } else if let error = error {
-            print("websocket encountered an error: \(error.localizedDescription)")
-        } else {
-            print("websocket encountered an error")
+    override func setupViews() {
+        socketButton.height(44)
+        socketButton.width(120)
+        cardView.addSubview(stackView)
+        view.addSubviews([mapView, cardView])
+    }
+    
+    override func setupLayouts() {
+        mapView.edgesToSuperview(excluding: .bottom)
+        mapView.bottomToTop(of: cardView, offset: 20)
+        
+        stackView.edgesToSuperview(insets: .init(top: 20, left: 20, bottom: 20, right: 20))
+        cardView.edgesToSuperview(excluding: .top,
+                                  insets: .init(top: 0,
+                                                left: 0,
+                                                bottom: 20,
+                                                right: 0),
+                                  usingSafeArea: false)
+    }
+}
+
+// MARK: - MKMapViewDelegate
+extension HomeViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let baseAnnotation = annotation as? BaseAnnotation
+        let annotationView = MKPinAnnotationView(annotation: vehicleAnnotation, reuseIdentifier: "customView")
+        annotationView.image = baseAnnotation?.image
+        annotationView.canShowCallout = true
+
+        return annotationView
+    }
+}
+
+// MARK: - Helper
+private extension HomeViewController {
+    func setWebSocket() {
+        viewModel.socketManager.eventClosure = { event in
+            guard let event = event else {
+                self.isInRide = false
+                self.viewModel.hideLoading()
+                self.showPopup(title: self.viewModel.errorTitle)
+                return
+            }
+            switch event {
+            case .connected:
+                self.viewModel.hideLoading()
+            case .disconnected:
+                self.viewModel.hideLoading()
+            case .text(let string):
+                self.parseSocketEvent(socket: string)
+            case .cancelled:
+                self.isInRide = false
+                self.viewModel.hideLoading()
+                self.showPopup(title: self.viewModel.rideFinishTitle)
+            case .error(let error):
+                self.handleError(error)
+            default:
+                break
+            }
         }
     }
     
     func parseSocketEvent(socket: String) {
         guard let data = socket.data(using: .utf8),
               let response = Socket(data: data) else {
-            print("HATAAA")
+            isInRide = false
+            viewModel.hideLoading()
+            showPopup(title: viewModel.errorTitle)
             return
         }
         
         switch response.data {
         case .bookingOpenedData(let data):
-            isInRide = true
-            setBookingOpendLocation(data)
+            setBookingOpened(data)
         case .vehicleLocationUpdated(let data):
-            updateVehicleVlocation(CLLocationCoordinate2D(latitude: data.lat, longitude: data.lng))
+            setUpdateVehicle(data)
         case .statusUpdated(let data):
-            print(data.rawValue)
+            statusLabel.text = data.getAlias()
         case .intermediateStopLocationsChanged(let data):
-            setStationsLocation(addressList: data)
+            setStations(data)
         case .bookingClosed:
-            isInRide = false
-        case .none:
-            isInRide = false
+            setBookingClosed()
         }
     }
     
-    func updateVehicleVlocation(_ location: CLLocationCoordinate2D) {
-        vehicleAnnotation.coordinate = location
+    func setUpdateVehicle(_ address: Address) {
+        vehicleAnnotation.coordinate = CLLocationCoordinate2D(latitude: address.lat, longitude: address.lng)
         
-        if isFirstVehicleUpdate {
-            isFirstVehicleUpdate = false
+        if isFirstTimeVehicleUpdate {
+            isFirstTimeVehicleUpdate = false
             mapView.addAnnotationIfNotExist(vehicleAnnotation)
             mapView.showAnnotations(mapView.annotations, animated: true)
         }
     }
-//    func getBearingBetweenTwoPoints1(point1 : CLLocation, point2 : CLLocation) -> Double {
-//
-//        let lat1 = degreesToRadians(degrees: point1.coordinate.latitude)
-//        let lon1 = degreesToRadians(degrees: point1.coordinate.longitude)
-//
-//        let lat2 = degreesToRadians(degrees: point2.coordinate.latitude)
-//        let lon2 = degreesToRadians(degrees: point2.coordinate.longitude)
-//
-//        let dLon = lon2 - lon1
-//
-//        let y = sin(dLon) * cos(lat2)
-//        let x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon)
-//        let radiansBearing = atan2(y, x)
-//
-//        return radiansToDegrees(radians: radiansBearing)
-//    }
-//
-    func setBookingOpendLocation(_ data: BookingOpenedData) {
+    
+    func setBookingOpened(_ data: BookingOpenedData) {
+        isInRide = true
+        statusLabel.text = data.status.getAlias()
+        
         let pickupLocation = data.pickupLocation
+        let pickupAddress = data.pickupLocation.address
         let dropoffLocation = data.dropoffLocation
+        let dropoffAddress = data.dropoffLocation.address
 
-        startAnnotation.coordinate = CLLocationCoordinate2D(latitude: pickupLocation.lat, longitude: pickupLocation.lng)
-        finishAnnotation.coordinate = CLLocationCoordinate2D(latitude: dropoffLocation.lat, longitude: dropoffLocation.lng)
+        pickupAnnotation.coordinate = CLLocationCoordinate2D(latitude: pickupLocation.lat, longitude: pickupLocation.lng)
+        pickupAnnotation.title = pickupAddress
+        mapView.addAnnotationIfNotExist(pickupAnnotation)
         
-        mapView.addAnnotationIfNotExist(startAnnotation)
-        mapView.addAnnotationIfNotExist(finishAnnotation)
+        dropoffAnnotation.coordinate = CLLocationCoordinate2D(latitude: dropoffLocation.lat, longitude: dropoffLocation.lng)
+        dropoffAnnotation.title = dropoffAddress
+        mapView.addAnnotationIfNotExist(dropoffAnnotation)
         
-        setStationsLocation(addressList: data.intermediateStopLocations)
+        setStations(data.intermediateStopLocations)
     }
     
-    func setStationsLocation(addressList: [Address?]) {
+    func setStations(_ addressList: [Address?]) {
         mapView.removeAnnotations(stationList)
         stationList = []
+        
         addressList.forEach({
             if let address = $0 {
                 let stationAnnotation = BaseAnnotation(image: .imgStation)
@@ -168,41 +203,32 @@ final class HomeViewController: BaseViewController<HomeViewModel> {
         })
     }
     
-    override func setupViews() {
-        startButton.height(44)
-        startButton.width(120)
-        cardView.height(150)
-        cardView.addSubviews([startButton])
-        view.addSubviews([mapView, cardView])
+    func setBookingClosed() {
+        isInRide = false
+        showPopup(title: viewModel.rideFinishTitle)
+    }
+
+    func handleError(_ error: Error?) {
+        isInRide = false
+        viewModel.hideLoading()
+
+        if let error = error as? WSError {
+            showPopup(title: error.message)
+        } else if let error = error {
+            showPopup(title: error.localizedDescription)
+        } else {
+            showPopup(title: viewModel.errorTitle)
+        }
     }
     
-    override func setupLayouts() {
-        mapView.edgesToSuperview(excluding: .bottom)
-        mapView.bottomToTop(of: cardView, offset: 20)
-        
-        startButton.centerInSuperview()
-        cardView.edgesToSuperview(excluding: .top,
-                                  insets: UIEdgeInsets(top: 0,
-                                                       left: 0,
-                                                       bottom: 20,
-                                                       right: 0),
-                                  usingSafeArea: false)
+    func showPopup(title: String) {
+        viewModel.showPopup(title: title) {
+            if let popupView = UIApplication.topViewController() {
+                popupView.dismiss(animated: true)
+            }
+        }
     }
-}
 
-extension HomeViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let cpa = annotation as? BaseAnnotation
-        let annotationView = MKPinAnnotationView(annotation: vehicleAnnotation, reuseIdentifier: "customView")
-        annotationView.canShowCallout = true
-        annotationView.image = cpa?.image
-
-        return annotationView
-    }
-}
-
-// MARK: - Helper
-private extension HomeViewController {
     func removeAllAnnotations() {
         mapView.removeAnnotations(mapView.annotations)
     }
@@ -211,7 +237,8 @@ private extension HomeViewController {
 // MARK: - Action
 @objc
 private extension HomeViewController {
-    func startAction() {
-        SocketManager.shared.connect()
+    func socketAction() {
+        viewModel.showLoading()
+        isInRide ? viewModel.socketManager.disconnect() : viewModel.socketManager.connect()
     }
 }
