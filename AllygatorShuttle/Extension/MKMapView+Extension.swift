@@ -13,4 +13,8 @@ extension MKMapView {
             addAnnotation(annotation)
         }
     }
+    
+    func removeAllAnnotations() {
+        removeAnnotations(annotations)
+    }
 }

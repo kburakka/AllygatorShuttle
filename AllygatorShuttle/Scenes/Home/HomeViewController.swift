@@ -9,11 +9,39 @@ import UIKit
 import MapKit
 import Starscream
 
-final class HomeViewController: BaseViewController<HomeViewModel> {
+protocol HomeViewControllerProtocol {
+    var mapView: MKMapView { get }
+    var cardView: UIView { get }
+    var socketButton: UIButton { get }
+    var statusLabel: UILabel { get }
+    var stackView: UIStackView { get }
+    var vehicleAnnotation: BaseAnnotation { get }
+    var pickupAnnotation: BaseAnnotation { get }
+    var dropoffAnnotation: BaseAnnotation { get }
+    var isFirstTimeVehicleUpdate: Bool { get set }
+    var isInRide: Bool { get set }
+    var stationList: [BaseAnnotation] { get set }
+    var isConectWebSocket: Bool { get set }
+
+    func setWebSocket()
+    func parseSocketEvent(socket: String)
+    func setUpdateVehicle(_ address: Address)
+    func setBookingOpened(_ data: BookingOpenedData)
+    func setStations(_ addressList: [Address?])
+    func handleError(_ error: Error?)
+    func showPopup(title: String)
+    func setBookingClosed()
+}
+
+final class HomeViewController: BaseViewController<HomeViewModel>, HomeViewControllerProtocol {
     
-    private let mapView = MKMapView()
+    var isConectWebSocket = false
+
+    var isFirstTimeVehicleUpdate = true
     
-    private let cardView: UIView = {
+    var mapView = MKMapView()
+    
+    var cardView: UIView = {
         let view = UIView(backgroundColor: .white, cornerRadius: 19)
         view.addShadow(radius: 14,
                        offset: CGSize(width: 0, height: -9),
@@ -21,25 +49,25 @@ final class HomeViewController: BaseViewController<HomeViewModel> {
         return view
     }()
     
-    private let socketButton: UIButton = {
+    lazy var socketButton: UIButton = {
         let button = UIButton()
         button.cornerRadius = 6
         button.titleLabel?.font = .mavenProMediumLarge
         button.backgroundColor = .coal
         button.titleLabel?.textColor = .calcite
-        button.setTitle("Start Ride", for: .normal)
+        button.setTitle(viewModel.startTitle, for: .normal)
         button.addTarget(self, action: #selector(socketAction), for: .touchUpInside)
         return button
     }()
     
-    private let statusLabel: UILabel = {
+    var statusLabel: UILabel = {
         let label = UILabel()
         label.font = .mavenProMediumXXLarge
         label.textColor = .coal
         return label
     }()
     
-    private lazy var stackView: UIStackView = {
+    lazy var stackView: UIStackView = {
         return UIStackView(arrangedSubviews: [statusLabel,
                                               socketButton],
                            axis: .vertical,
@@ -48,25 +76,27 @@ final class HomeViewController: BaseViewController<HomeViewModel> {
                            distribution: .fill)
     }()
     
-    private let vehicleAnnotation = BaseAnnotation(image: .imgVehicle)
-    private let pickupAnnotation = BaseAnnotation(image: .imgStart)
-    private let dropoffAnnotation = BaseAnnotation(image: .imgFinish)
-    private var stationList: [BaseAnnotation] = []
-    private var isFirstTimeVehicleUpdate = true
+    var vehicleAnnotation = BaseAnnotation(image: .imgVehicle)
     
-    private var isInRide = false {
-        didSet {
-            if isInRide {
-                socketButton.setTitle("Finish Ride", for: .normal)
-            } else {
-                isFirstTimeVehicleUpdate = true
-                statusLabel.text = nil
-                socketButton.setTitle("Start Ride", for: .normal)
-                removeAllAnnotations()
+    var pickupAnnotation = BaseAnnotation(image: .imgStart)
+    
+    var dropoffAnnotation = BaseAnnotation(image: .imgFinish)
+    
+    var isInRide = false {
+            didSet {
+                if isInRide {
+                    socketButton.setTitle(viewModel.finishTitle, for: .normal)
+                } else {
+                    isFirstTimeVehicleUpdate = true
+                    statusLabel.text = nil
+                    socketButton.setTitle(viewModel.startTitle, for: .normal)
+                    mapView.removeAllAnnotations()
+                }
             }
-        }
     }
-
+    
+    var stationList: [BaseAnnotation] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -107,7 +137,7 @@ extension HomeViewController: MKMapViewDelegate {
 }
 
 // MARK: - Helper
-private extension HomeViewController {
+extension HomeViewController {
     func setWebSocket() {
         viewModel.socketManager.eventClosure = { event in
             guard let event = event else {
@@ -118,8 +148,10 @@ private extension HomeViewController {
             }
             switch event {
             case .connected:
+                self.isConectWebSocket = true
                 self.viewModel.hideLoading()
             case .disconnected:
+                self.isConectWebSocket = false
                 self.viewModel.hideLoading()
             case .text(let string):
                 self.parseSocketEvent(socket: string)
@@ -185,6 +217,7 @@ private extension HomeViewController {
         dropoffAnnotation.title = dropoffAddress
         mapView.addAnnotationIfNotExist(dropoffAnnotation)
         
+        setUpdateVehicle(data.vehicleLocation)
         setStations(data.intermediateStopLocations)
     }
     
@@ -227,10 +260,6 @@ private extension HomeViewController {
                 popupView.dismiss(animated: true)
             }
         }
-    }
-
-    func removeAllAnnotations() {
-        mapView.removeAnnotations(mapView.annotations)
     }
 }
 

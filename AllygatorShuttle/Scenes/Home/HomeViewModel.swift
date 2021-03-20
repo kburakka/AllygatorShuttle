@@ -16,7 +16,6 @@ protocol HomeViewDataSource {
 
 protocol HomeViewEventSource {
     func showPopup(title: String, closeHandler: VoidClosure?)
-
 }
 
 protocol HomeViewProtocol: HomeViewDataSource, HomeViewEventSource {}

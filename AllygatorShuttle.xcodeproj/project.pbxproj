@@ -34,9 +34,9 @@
 		B33F76DE2605E5C100B81A39 /* MavenPro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B33F76DD2605E5C100B81A39 /* MavenPro-Medium.ttf */; };
 		B33F76F22605EB4E00B81A39 /* LoadingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F76F12605EB4E00B81A39 /* LoadingHelper.swift */; };
 		B33F770E2605ED9B00B81A39 /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = B33F770D2605ED9B00B81A39 /* Loading.json */; };
+		B33F775226067ED200B81A39 /* HomeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F775126067ED200B81A39 /* HomeTest.swift */; };
 		B35CBDD72603AE9C0071DE9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBDD62603AE9C0071DE9C /* AppDelegate.swift */; };
 		B35CBDE32603AE9E0071DE9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B35CBDE12603AE9E0071DE9C /* LaunchScreen.storyboard */; };
-		B35CBDEE2603AE9E0071DE9C /* AllygatorShuttleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBDED2603AE9E0071DE9C /* AllygatorShuttleTests.swift */; };
 		B35CBDF92603AE9E0071DE9C /* AllygatorShuttleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBDF82603AE9E0071DE9C /* AllygatorShuttleUITests.swift */; };
 		B35CBE712603B09B0071DE9C /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBE6E2603B09B0071DE9C /* SplashRouter.swift */; };
 		B35CBE722603B09B0071DE9C /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBE6F2603B09B0071DE9C /* SplashViewController.swift */; };
@@ -116,12 +116,12 @@
 		B33F76DD2605E5C100B81A39 /* MavenPro-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MavenPro-Medium.ttf"; sourceTree = "<group>"; };
 		B33F76F12605EB4E00B81A39 /* LoadingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingHelper.swift; sourceTree = "<group>"; };
 		B33F770D2605ED9B00B81A39 /* Loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loading.json; sourceTree = "<group>"; };
+		B33F775126067ED200B81A39 /* HomeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTest.swift; sourceTree = "<group>"; };
 		B35CBDD32603AE9C0071DE9C /* AllygatorShuttle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AllygatorShuttle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B35CBDD62603AE9C0071DE9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B35CBDE22603AE9E0071DE9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B35CBDE42603AE9E0071DE9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B35CBDE92603AE9E0071DE9C /* AllygatorShuttleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AllygatorShuttleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B35CBDED2603AE9E0071DE9C /* AllygatorShuttleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllygatorShuttleTests.swift; sourceTree = "<group>"; };
 		B35CBDEF2603AE9E0071DE9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B35CBDF42603AE9E0071DE9C /* AllygatorShuttleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AllygatorShuttleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B35CBDF82603AE9E0071DE9C /* AllygatorShuttleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllygatorShuttleUITests.swift; sourceTree = "<group>"; };
@@ -310,8 +310,8 @@
 		B35CBDEC2603AE9E0071DE9C /* AllygatorShuttleTests */ = {
 			isa = PBXGroup;
 			children = (
-				B35CBDED2603AE9E0071DE9C /* AllygatorShuttleTests.swift */,
 				B35CBDEF2603AE9E0071DE9C /* Info.plist */,
+				B33F775126067ED200B81A39 /* HomeTest.swift */,
 			);
 			path = AllygatorShuttleTests;
 			sourceTree = "<group>";
@@ -814,7 +814,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B35CBDEE2603AE9E0071DE9C /* AllygatorShuttleTests.swift in Sources */,
+				B33F775226067ED200B81A39 /* HomeTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
