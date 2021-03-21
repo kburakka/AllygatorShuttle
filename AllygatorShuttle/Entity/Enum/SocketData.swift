@@ -11,8 +11,9 @@ enum SocketData: Decodable {
     case statusUpdated(Status)
     case intermediateStopLocationsChanged([Address?])
     case bookingClosed
-    
-    init(from decoder: Decoder) throws {
+    case error
+
+    init(from decoder: Decoder) {
         if let bookingOpenedData = try? decoder.singleValueContainer().decode(BookingOpenedData.self) {
             self = .bookingOpenedData(bookingOpenedData)
             return
@@ -28,12 +29,9 @@ enum SocketData: Decodable {
         } else if (try? decoder.singleValueContainer().decodeNil()) != nil {
             self = .bookingClosed
             return
+        } else {
+            self = .error
+            return
         }
-        
-        throw QuantumError.missingValue
-    }
-    
-    enum QuantumError: Error {
-        case missingValue
     }
 }

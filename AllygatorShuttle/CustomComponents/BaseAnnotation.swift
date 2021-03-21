@@ -9,9 +9,10 @@ import MapKit
 
 class BaseAnnotation: MKPointAnnotation {
     var image: UIImage?
-    
-    init(image: UIImage?) {
-        self.image = image?.resize(targetSize: CGSize(width: 50, height: 50))
+    var annotationType: AnnotationType?
+
+    init(image: UIImage?, annotationType: AnnotationType) {
+        self.image = image?.resize(targetSize: CGSize(width: 40, height: 40))
+        self.annotationType = annotationType
     }
-    
 }

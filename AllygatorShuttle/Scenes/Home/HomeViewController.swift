@@ -19,6 +19,7 @@ protocol HomeViewControllerProtocol {
     var pickupAnnotation: BaseAnnotation { get }
     var dropoffAnnotation: BaseAnnotation { get }
     var stationList: [BaseAnnotation] { get set }
+    var vehicleAnnotationView: BaseAnnotationView? { get set }
 
     func setWebSocket()
     func parseSocketEvent(socket: String)
@@ -32,9 +33,10 @@ protocol HomeViewControllerProtocol {
 
 final class HomeViewController: BaseViewController<HomeViewModel>, HomeViewControllerProtocol {
     var mapView = MKMapView()
-    var vehicleAnnotation = BaseAnnotation(image: .imgVehicle)
-    var pickupAnnotation = BaseAnnotation(image: .imgStart)
-    var dropoffAnnotation = BaseAnnotation(image: .imgFinish)
+    var vehicleAnnotation = BaseAnnotation(image: .imgVehicle, annotationType: .vehicle)
+    var pickupAnnotation = BaseAnnotation(image: .imgStart, annotationType: .pickup)
+    var dropoffAnnotation = BaseAnnotation(image: .imgFinish, annotationType: .dropoff)
+    var vehicleAnnotationView: BaseAnnotationView?
     var stationList: [BaseAnnotation] = []
 
     var cardView: UIView = {
@@ -114,18 +116,6 @@ final class HomeViewController: BaseViewController<HomeViewModel>, HomeViewContr
     }
 }
 
-// MARK: - MKMapViewDelegate
-extension HomeViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let baseAnnotation = annotation as? BaseAnnotation
-        let annotationView = MKPinAnnotationView(annotation: vehicleAnnotation, reuseIdentifier: "customView")
-        annotationView.image = baseAnnotation?.image
-        annotationView.canShowCallout = true
-
-        return annotationView
-    }
-}
-
 // MARK: - Helper
 extension HomeViewController {
     func setWebSocket() {
@@ -177,12 +167,21 @@ extension HomeViewController {
             setStations(data)
         case .bookingClosed:
             setBookingClosed()
+        case .error:
+            handleError(nil)
         }
     }
     
     func setUpdateVehicle(_ address: Address) {
-        vehicleAnnotation.coordinate = CLLocationCoordinate2D(latitude: address.lat, longitude: address.lng)
-        
+        var address = address
+        UIView.animate(withDuration: 2.0, animations: {
+            let location = CLLocationCoordinate2D(latitude: address.lat, longitude: address.lng)
+            self.vehicleAnnotation.coordinate = location
+            address.setBearingAngle(lastAddress: self.viewModel.lastVehicleAddress)
+            self.vehicleAnnotationView?.imageView?.transform = CGAffineTransform(rotationAngle: CGFloat(address.bearing ?? 0))
+            self.viewModel.lastVehicleAddress = address
+        })
+
         if viewModel.isFirstTimeVehicleUpdate {
             viewModel.isFirstTimeVehicleUpdate = false
             mapView.addAnnotationIfNotExist(vehicleAnnotation)
@@ -217,7 +216,7 @@ extension HomeViewController {
         
         addressList.forEach({
             if let address = $0 {
-                let stationAnnotation = BaseAnnotation(image: .imgStation)
+                let stationAnnotation = BaseAnnotation(image: .imgStation, annotationType: .station)
                 stationAnnotation.coordinate = CLLocationCoordinate2D(latitude: address.lat, longitude: address.lng)
                 stationAnnotation.title = address.address
                 mapView.addAnnotation(stationAnnotation)
@@ -261,5 +260,20 @@ private extension HomeViewController {
     func socketAction() {
         viewModel.showLoading()
         viewModel.isInRide ? viewModel.socketManager.disconnect() : viewModel.socketManager.connect()
+    }
+}
+
+// MARK: - MKMapViewDelegate
+extension HomeViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let baseAnnotation = annotation as? BaseAnnotation
+        let annotationView = BaseAnnotationView(annotation: baseAnnotation, reuseIdentifier: "baseAnnotationView")
+        annotationView.updateImge(image: baseAnnotation?.image)
+        annotationView.canShowCallout = true
+        if baseAnnotation?.annotationType == .vehicle {
+            vehicleAnnotationView = annotationView
+        }
+
+        return annotationView
     }
 }

@@ -26,6 +26,7 @@ final class PopupViewController: BaseViewController<PopupViewModel> {
         label.text = viewModel.title
         label.font = .mavenProMediumXXLarge
         label.textColor = .coal
+        label.numberOfLines = 0
         return label
     }()
     
@@ -67,7 +68,7 @@ final class PopupViewController: BaseViewController<PopupViewModel> {
         imageView.height(120)
         imageView.width(120)
         imageView.centerX(to: containerView)
-        imageView.bottomToTop(of: titleLabel, offset: -8)
+        imageView.bottomToTop(of: stackView, offset: -8)
         
         closeButton.height(44.0)
         closeButton.width(155.0)

@@ -16,7 +16,8 @@ protocol HomeViewDataSource {
     var isInRide: Bool { get set }
     var isInRideCompletion: BoolClosure? { get set }
     var isFirstTimeVehicleUpdate: Bool { get set }
-    
+    var lastVehicleAddress: Address? { get set }
+
     func getStatusAlias(status: Status) -> String
 }
 
@@ -27,16 +28,16 @@ protocol HomeViewEventSource {
 protocol HomeViewProtocol: HomeViewDataSource, HomeViewEventSource {}
 
 final class HomeViewModel: BaseViewModel<HomeRouter>, HomeViewProtocol {
-    var socketButtonTitle: String {
-        return isInRide ? "Finish ride" : "Start ride"
-    }
     var rideFinishTitle: String = "Your ride is finished!"
     var errorTitle: String = "Something went wrong!"
     var isConectWebSocket = false
     var isFirstTimeVehicleUpdate = true
     var isPopupDisplay = false
     var isInRideCompletion: BoolClosure?
-    
+    var lastVehicleAddress: Address?
+    var socketButtonTitle: String {
+        return isInRide ? "Finish ride" : "Start ride"
+    }
     var isInRide = false {
         didSet {
             isInRideCompletion?(isInRide)
@@ -50,5 +51,4 @@ final class HomeViewModel: BaseViewModel<HomeRouter>, HomeViewProtocol {
     func getStatusAlias(status: Status) -> String {
         return status.getAlias()
     }
-    
 }
