@@ -18,10 +18,7 @@ protocol HomeViewControllerProtocol {
     var vehicleAnnotation: BaseAnnotation { get }
     var pickupAnnotation: BaseAnnotation { get }
     var dropoffAnnotation: BaseAnnotation { get }
-    var isFirstTimeVehicleUpdate: Bool { get set }
-    var isInRide: Bool { get set }
     var stationList: [BaseAnnotation] { get set }
-    var isConectWebSocket: Bool { get set }
 
     func setWebSocket()
     func parseSocketEvent(socket: String)
@@ -38,11 +35,8 @@ final class HomeViewController: BaseViewController<HomeViewModel>, HomeViewContr
     var vehicleAnnotation = BaseAnnotation(image: .imgVehicle)
     var pickupAnnotation = BaseAnnotation(image: .imgStart)
     var dropoffAnnotation = BaseAnnotation(image: .imgFinish)
-    var isConectWebSocket = false
-    var isFirstTimeVehicleUpdate = true
     var stationList: [BaseAnnotation] = []
-    
-    
+
     var cardView: UIView = {
         let view = UIView(backgroundColor: .white, cornerRadius: 19)
         view.addShadow(radius: 14,
@@ -57,8 +51,9 @@ final class HomeViewController: BaseViewController<HomeViewModel>, HomeViewContr
         button.titleLabel?.font = .mavenProMediumLarge
         button.backgroundColor = .coal
         button.titleLabel?.textColor = .calcite
-        button.setTitle(viewModel.startTitle, for: .normal)
+        button.setTitle(viewModel.socketButtonTitle, for: .normal)
         button.addTarget(self, action: #selector(socketAction), for: .touchUpInside)
+        button.accessibilityIdentifier = "socketButton"
         return button
     }()
     
@@ -66,35 +61,35 @@ final class HomeViewController: BaseViewController<HomeViewModel>, HomeViewContr
         let label = UILabel()
         label.font = .mavenProMediumXXLarge
         label.textColor = .coal
+        label.accessibilityIdentifier = "statusLabel"
         return label
     }()
     
     lazy var stackView: UIStackView = {
-        return UIStackView(arrangedSubviews: [statusLabel,
-                                              socketButton],
-                           axis: .vertical,
-                           spacing: 15,
-                           alignment: .center,
-                           distribution: .fill)
+        let stackView = UIStackView(arrangedSubviews: [statusLabel,
+                                                       socketButton],
+                                   axis: .vertical,
+                                   spacing: 15,
+                                   alignment: .center,
+                                   distribution: .fill)
+        return stackView
     }()
-    
-    var isInRide = false {
-        didSet {
-            if isInRide {
-                socketButton.setTitle(viewModel.finishTitle, for: .normal)
-            } else {
-                isFirstTimeVehicleUpdate = true
-                statusLabel.text = nil
-                socketButton.setTitle(viewModel.startTitle, for: .normal)
-                mapView.removeAllAnnotations()
-            }
-        }
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.accessibilityIdentifier = "HomeViewController"
         mapView.delegate = self
+        
+        viewModel.isInRideCompletion = { [weak self] isInRide in
+            guard let self = self else { return }
+            self.socketButton.setTitle(self.viewModel.socketButtonTitle, for: .normal)
+            if !isInRide {
+                self.viewModel.isFirstTimeVehicleUpdate = true
+                self.statusLabel.text = nil
+                self.mapView.removeAllAnnotations()
+            }
+        }
+
         setWebSocket()
     }
     
@@ -136,22 +131,22 @@ extension HomeViewController {
     func setWebSocket() {
         viewModel.socketManager.eventClosure = { event in
             guard let event = event else {
-                self.isInRide = false
+                self.viewModel.isInRide = false
                 self.viewModel.hideLoading()
                 self.showPopup(title: self.viewModel.errorTitle)
                 return
             }
             switch event {
             case .connected:
-                self.isConectWebSocket = true
+                self.viewModel.isConectWebSocket = true
                 self.viewModel.hideLoading()
             case .disconnected:
-                self.isConectWebSocket = false
+                self.viewModel.isConectWebSocket = false
                 self.viewModel.hideLoading()
             case .text(let string):
                 self.parseSocketEvent(socket: string)
             case .cancelled:
-                self.isInRide = false
+                self.viewModel.isInRide = false
                 self.viewModel.hideLoading()
                 self.showPopup(title: self.viewModel.rideFinishTitle)
             case .error(let error):
@@ -165,7 +160,7 @@ extension HomeViewController {
     func parseSocketEvent(socket: String) {
         guard let data = socket.data(using: .utf8),
               let response = Socket(data: data) else {
-            isInRide = false
+            viewModel.isInRide = false
             viewModel.hideLoading()
             showPopup(title: viewModel.errorTitle)
             return
@@ -177,7 +172,7 @@ extension HomeViewController {
         case .vehicleLocationUpdated(let data):
             setUpdateVehicle(data)
         case .statusUpdated(let data):
-            statusLabel.text = data.getAlias()
+            statusLabel.text = viewModel.getStatusAlias(status: data)
         case .intermediateStopLocationsChanged(let data):
             setStations(data)
         case .bookingClosed:
@@ -188,16 +183,16 @@ extension HomeViewController {
     func setUpdateVehicle(_ address: Address) {
         vehicleAnnotation.coordinate = CLLocationCoordinate2D(latitude: address.lat, longitude: address.lng)
         
-        if isFirstTimeVehicleUpdate {
-            isFirstTimeVehicleUpdate = false
+        if viewModel.isFirstTimeVehicleUpdate {
+            viewModel.isFirstTimeVehicleUpdate = false
             mapView.addAnnotationIfNotExist(vehicleAnnotation)
             mapView.showAnnotations(mapView.annotations, animated: true)
         }
     }
     
     func setBookingOpened(_ data: BookingOpenedData) {
-        isInRide = true
-        statusLabel.text = data.status.getAlias()
+        viewModel.isInRide = true
+        statusLabel.text = viewModel.getStatusAlias(status: data.status)
         
         let pickupLocation = data.pickupLocation
         let pickupAddress = data.pickupLocation.address
@@ -232,12 +227,12 @@ extension HomeViewController {
     }
     
     func setBookingClosed() {
-        isInRide = false
+        viewModel.isInRide = false
         showPopup(title: viewModel.rideFinishTitle)
     }
 
     func handleError(_ error: Error?) {
-        isInRide = false
+        viewModel.isInRide = false
         viewModel.hideLoading()
 
         if let error = error as? WSError {
@@ -250,7 +245,9 @@ extension HomeViewController {
     }
     
     func showPopup(title: String) {
+        viewModel.isPopupDisplay = true
         viewModel.showPopup(title: title) {
+            self.viewModel.isPopupDisplay = false
             if let popupView = UIApplication.topViewController() {
                 popupView.dismiss(animated: true)
             }
@@ -263,6 +260,6 @@ extension HomeViewController {
 private extension HomeViewController {
     func socketAction() {
         viewModel.showLoading()
-        isInRide ? viewModel.socketManager.disconnect() : viewModel.socketManager.connect()
+        viewModel.isInRide ? viewModel.socketManager.disconnect() : viewModel.socketManager.connect()
     }
 }

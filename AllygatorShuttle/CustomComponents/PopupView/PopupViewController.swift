@@ -56,6 +56,7 @@ final class PopupViewController: BaseViewController<PopupViewModel> {
     
     override func setupViews() {
         super.setupViews()
+        view.accessibilityIdentifier = "PopupViewController"
         containerView.addSubviews([stackView])
         view.addSubviews([containerView, imageView])
     }

@@ -41,7 +41,13 @@ class HomeTest: XCTestCase {
         view.parseSocketEvent(socket: data)
         
         // Then:
-        XCTAssertEqual(view.isInRide, true)
+        XCTAssertEqual(view.viewModel.isInRide, true)
+        XCTAssertEqual(view.viewModel.socketButtonTitle, "Finish ride")
+        if let status = Status.init(rawValue: "waitingForPickup") {
+            XCTAssertEqual(view.viewModel.getStatusAlias(status: status), "Waiting for pickup!")
+        } else {
+            XCTFail("Status is nil")
+        }
         XCTAssertEqual(view.mapView.annotations.count, 5)
     }
     
@@ -51,7 +57,7 @@ class HomeTest: XCTestCase {
         socketManager.eventClosure?(.connected(["test" : "test"]))
         
         // Then:
-        XCTAssertEqual(view.isConectWebSocket, true)
+        XCTAssertEqual(view.viewModel.isConectWebSocket, true)
     }
     
     
@@ -67,7 +73,7 @@ class HomeTest: XCTestCase {
         XCTAssertEqual(view.vehicleAnnotation.coordinate.latitude, address.lat)
         XCTAssertEqual(view.vehicleAnnotation.coordinate.longitude, address.lng)
         XCTAssertEqual(view.mapView.annotations.count, 1)
-        XCTAssertEqual(view.isFirstTimeVehicleUpdate, false)
+        XCTAssertEqual(view.viewModel.isFirstTimeVehicleUpdate, false)
     }
     
     func testSetBookingOpened() throws {
@@ -84,7 +90,7 @@ class HomeTest: XCTestCase {
         view.setBookingOpened(bookingOpenedData)
         
         // Then:
-        XCTAssertEqual(view.isInRide, true)
+        XCTAssertEqual(view.viewModel.isInRide, true)
         XCTAssertEqual(view.mapView.annotations.count, 4)
     }
     
@@ -105,25 +111,36 @@ class HomeTest: XCTestCase {
     
     func testSetBookingClosed() throws {
         // Given:
-        view.isInRide = true
+        view.viewModel.isInRide = true
 
         // When:
         view.setBookingClosed()
         
         // Then:
-        XCTAssertEqual(view.isInRide, false)
-
+        XCTAssertEqual(view.viewModel.isInRide, false)
     }
     
     func testHandleError() throws {
         // Given:
-        view.isInRide = true
+        view.viewModel.isInRide = true
+        view.viewModel.isPopupDisplay = false
 
         // When:
         view.handleError(nil)
         
         // Then:
-        XCTAssertEqual(view.isInRide, false)
-
+        XCTAssertEqual(view.viewModel.isInRide, false)
+        XCTAssertEqual(view.viewModel.isPopupDisplay, true)
+    }
+    
+    func testShowPupup() throws {
+        // Given:
+        view.viewModel.isPopupDisplay = false
+        
+        // When:
+        view.showPopup(title: "title")
+        
+        // Then:
+        XCTAssertEqual(view.viewModel.isPopupDisplay, true)
     }
 }

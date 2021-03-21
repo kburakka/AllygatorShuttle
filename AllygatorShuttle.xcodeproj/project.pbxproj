@@ -38,9 +38,11 @@
 		B33F775A2606A0BB00B81A39 /* UIStackViewExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F77592606A0BB00B81A39 /* UIStackViewExtensionTest.swift */; };
 		B33F77762606A41500B81A39 /* MKMapViewExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F77752606A41500B81A39 /* MKMapViewExtensionTest.swift */; };
 		B33F777E2606A4D900B81A39 /* UIViewExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F777D2606A4D900B81A39 /* UIViewExtensionTest.swift */; };
+		B33F7793260748CC00B81A39 /* XCUIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F7792260748CC00B81A39 /* XCUIApplication+Extension.swift */; };
+		B33F779B260748F300B81A39 /* SplashUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F779A260748F300B81A39 /* SplashUITest.swift */; };
+		B33F77A02607725E00B81A39 /* HomeUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F779F2607725E00B81A39 /* HomeUITest.swift */; };
 		B35CBDD72603AE9C0071DE9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBDD62603AE9C0071DE9C /* AppDelegate.swift */; };
 		B35CBDE32603AE9E0071DE9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B35CBDE12603AE9E0071DE9C /* LaunchScreen.storyboard */; };
-		B35CBDF92603AE9E0071DE9C /* AllygatorShuttleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBDF82603AE9E0071DE9C /* AllygatorShuttleUITests.swift */; };
 		B35CBE712603B09B0071DE9C /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBE6E2603B09B0071DE9C /* SplashRouter.swift */; };
 		B35CBE722603B09B0071DE9C /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBE6F2603B09B0071DE9C /* SplashViewController.swift */; };
 		B35CBE732603B09B0071DE9C /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBE702603B09B0071DE9C /* SplashViewModel.swift */; };
@@ -123,6 +125,9 @@
 		B33F77592606A0BB00B81A39 /* UIStackViewExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExtensionTest.swift; sourceTree = "<group>"; };
 		B33F77752606A41500B81A39 /* MKMapViewExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewExtensionTest.swift; sourceTree = "<group>"; };
 		B33F777D2606A4D900B81A39 /* UIViewExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensionTest.swift; sourceTree = "<group>"; };
+		B33F7792260748CC00B81A39 /* XCUIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Extension.swift"; sourceTree = "<group>"; };
+		B33F779A260748F300B81A39 /* SplashUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashUITest.swift; sourceTree = "<group>"; };
+		B33F779F2607725E00B81A39 /* HomeUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUITest.swift; sourceTree = "<group>"; };
 		B35CBDD32603AE9C0071DE9C /* AllygatorShuttle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AllygatorShuttle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B35CBDD62603AE9C0071DE9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B35CBDE22603AE9E0071DE9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -130,7 +135,6 @@
 		B35CBDE92603AE9E0071DE9C /* AllygatorShuttleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AllygatorShuttleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B35CBDEF2603AE9E0071DE9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B35CBDF42603AE9E0071DE9C /* AllygatorShuttleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AllygatorShuttleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B35CBDF82603AE9E0071DE9C /* AllygatorShuttleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllygatorShuttleUITests.swift; sourceTree = "<group>"; };
 		B35CBDFA2603AE9E0071DE9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B35CBE6E2603B09B0071DE9C /* SplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
 		B35CBE6F2603B09B0071DE9C /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -336,8 +340,10 @@
 		B35CBDF72603AE9E0071DE9C /* AllygatorShuttleUITests */ = {
 			isa = PBXGroup;
 			children = (
-				B35CBDF82603AE9E0071DE9C /* AllygatorShuttleUITests.swift */,
 				B35CBDFA2603AE9E0071DE9C /* Info.plist */,
+				B33F7792260748CC00B81A39 /* XCUIApplication+Extension.swift */,
+				B33F779A260748F300B81A39 /* SplashUITest.swift */,
+				B33F779F2607725E00B81A39 /* HomeUITest.swift */,
 			);
 			path = AllygatorShuttleUITests;
 			sourceTree = "<group>";
@@ -842,7 +848,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B35CBDF92603AE9E0071DE9C /* AllygatorShuttleUITests.swift in Sources */,
+				B33F7793260748CC00B81A39 /* XCUIApplication+Extension.swift in Sources */,
+				B33F77A02607725E00B81A39 /* HomeUITest.swift in Sources */,
+				B33F779B260748F300B81A39 /* SplashUITest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

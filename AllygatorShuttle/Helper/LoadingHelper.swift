@@ -37,6 +37,7 @@ public final class LoadingHelper {
     public init(_ name: String) {
         self._lottie = AnimationView(name: name)
         self._lottie.loopMode = .loop
+        self._lottie.accessibilityIdentifier = "LoadingLottie"
     }
     
     public init(_ lottie: AnimationView) {

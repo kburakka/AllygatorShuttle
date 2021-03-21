@@ -13,12 +13,14 @@ final class SplashViewController: BaseViewController<SplashViewModel> {
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
+        imageView.accessibilityIdentifier = "logoImageView"
         return imageView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setLogoImageView()
+        view.accessibilityIdentifier = "SplashViewController"
     }
     
     override func viewDidAppear(_ animated: Bool) {

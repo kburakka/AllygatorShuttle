@@ -10,8 +10,14 @@ import Foundation
 protocol HomeViewDataSource {
     var rideFinishTitle: String { get }
     var errorTitle: String { get }
-    var startTitle: String { get }
-    var finishTitle: String { get }
+    var socketButtonTitle: String { get }
+    var isConectWebSocket: Bool { get set }
+    var isPopupDisplay: Bool { get set }
+    var isInRide: Bool { get set }
+    var isInRideCompletion: BoolClosure? { get set }
+    var isFirstTimeVehicleUpdate: Bool { get set }
+    
+    func getStatusAlias(status: Status) -> String
 }
 
 protocol HomeViewEventSource {
@@ -21,12 +27,28 @@ protocol HomeViewEventSource {
 protocol HomeViewProtocol: HomeViewDataSource, HomeViewEventSource {}
 
 final class HomeViewModel: BaseViewModel<HomeRouter>, HomeViewProtocol {
-    var startTitle: String = "Start ride"
-    var finishTitle: String = "Finish ride"
+    var socketButtonTitle: String {
+        return isInRide ? "Finish ride" : "Start ride"
+    }
     var rideFinishTitle: String = "Your ride is finished!"
-    var errorTitle: String = "Somethhing went wrong!"
+    var errorTitle: String = "Something went wrong!"
+    var isConectWebSocket = false
+    var isFirstTimeVehicleUpdate = true
+    var isPopupDisplay = false
+    var isInRideCompletion: BoolClosure?
+    
+    var isInRide = false {
+        didSet {
+            isInRideCompletion?(isInRide)
+        }
+    }
     
     func showPopup(title: String, closeHandler: VoidClosure?) {
         router.presentPopupView(closeHandler: closeHandler, title: title)
     }
+    
+    func getStatusAlias(status: Status) -> String {
+        return status.getAlias()
+    }
+    
 }
