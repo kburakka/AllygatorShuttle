@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 import Starscream
 
-protocol HomeViewControllerProtocol {
+protocol HomeViewControllerDataProtocol {
     var mapView: MKMapView { get }
     var cardView: UIView { get }
     var socketButton: UIButton { get }
@@ -22,7 +22,10 @@ protocol HomeViewControllerProtocol {
     var stationList: [BaseAnnotation] { get set }
     var vehicleAnnotationView: BaseAnnotationView? { get set }
     var detailViews: [DetailView] { get set }
+}
 
+protocol HomeViewControllerHelperProtocol {
+    func setInRide()
     func setWebSocket()
     func parseSocketEvent(socket: String)
     func setUpdateVehicle(_ address: Address)
@@ -30,10 +33,12 @@ protocol HomeViewControllerProtocol {
     func setStations(_ addressList: [Address?])
     func handleError(_ error: Error?)
     func showPopup(title: String)
-    func setBookingClosed()
+    func setBookingClosed(popupTitle: String)
+    func toggleDetailButton()
+    func toggleDetailViews(isHidden: Bool)
 }
 
-final class HomeViewController: BaseViewController<HomeViewModel>, HomeViewControllerProtocol {
+final class HomeViewController: BaseViewController<HomeViewModel>, HomeViewControllerDataProtocol {
     var mapView = MKMapView()
     var vehicleAnnotation = BaseAnnotation(image: .imgVehicle, annotationType: .vehicle)
     var pickupAnnotation = BaseAnnotation(image: .imgStart, annotationType: .pickup)
@@ -146,7 +151,7 @@ final class HomeViewController: BaseViewController<HomeViewModel>, HomeViewContr
 }
 
 // MARK: - Helper
-extension HomeViewController {
+extension HomeViewController: HomeViewControllerHelperProtocol {
     func setInRide() {
         viewModel.isInRideCompletion = { [weak self] isInRide in
             guard let self = self else { return }
@@ -163,9 +168,7 @@ extension HomeViewController {
     func setWebSocket() {
         viewModel.socketManager.eventClosure = { event in
             guard let event = event else {
-                self.viewModel.isInRide = false
-                self.viewModel.hideLoading()
-                self.showPopup(title: self.viewModel.errorTitle)
+                self.setBookingClosed(popupTitle: self.viewModel.errorTitle)
                 return
             }
             switch event {
@@ -178,9 +181,7 @@ extension HomeViewController {
             case .text(let string):
                 self.parseSocketEvent(socket: string)
             case .cancelled:
-                self.viewModel.isInRide = false
-                self.viewModel.hideLoading()
-                self.showPopup(title: self.viewModel.rideFinishTitle)
+                self.setBookingClosed(popupTitle: self.viewModel.rideFinishTitle)
             case .error(let error):
                 self.handleError(error)
             default:
@@ -192,9 +193,7 @@ extension HomeViewController {
     func parseSocketEvent(socket: String) {
         guard let data = socket.data(using: .utf8),
               let response = Socket(data: data) else {
-            viewModel.isInRide = false
-            viewModel.hideLoading()
-            showPopup(title: viewModel.errorTitle)
+            setBookingClosed(popupTitle: viewModel.errorTitle)
             return
         }
         
@@ -208,7 +207,7 @@ extension HomeViewController {
         case .intermediateStopLocationsChanged(let data):
             setStations(data)
         case .bookingClosed:
-            setBookingClosed()
+            setBookingClosed(popupTitle: viewModel.rideFinishTitle)
         case .error:
             handleError(nil)
         }
@@ -267,21 +266,20 @@ extension HomeViewController {
         })
     }
     
-    func setBookingClosed() {
-        viewModel.isInRide = false
-        showPopup(title: viewModel.rideFinishTitle)
+    func setBookingClosed(popupTitle: String) {
+        viewModel.hideLoading()
+        toggleDetailViews(isHidden: true)
+        viewModel.setDefaultModel()
+        showPopup(title: popupTitle)
     }
 
     func handleError(_ error: Error?) {
-        viewModel.isInRide = false
-        viewModel.hideLoading()
-
         if let error = error as? WSError {
-            showPopup(title: error.message)
+            setBookingClosed(popupTitle: error.message)
         } else if let error = error {
-            showPopup(title: error.localizedDescription)
+            setBookingClosed(popupTitle: error.localizedDescription)
         } else {
-            showPopup(title: viewModel.errorTitle)
+            setBookingClosed(popupTitle: viewModel.errorTitle)
         }
     }
     
@@ -302,14 +300,17 @@ extension HomeViewController {
         })
     }
     
-    func toggleDetailViews(isHidden: Bool, completion: VoidClosure? = nil) {
+    func toggleDetailViews(isHidden: Bool) {
         UIView.animate(withDuration: 1, animations: {
             self.detailViews.forEach({
                 $0.isHidden = isHidden
                 $0.alpha = isHidden ? 0 : 1
             })
         }) { _ in
-            completion?()
+            if isHidden {
+                self.detailViews.forEach({ $0.removeFromSuperview() })
+                self.detailViews = []
+            }
         }
     }
 }
@@ -324,12 +325,10 @@ private extension HomeViewController {
     
     func detailAction() {
         if viewModel.isDetailDisplay {
-            toggleDetailViews(isHidden: true) {
-                self.detailViews.forEach({ $0.removeFromSuperview() })
-                self.detailViews = []
-            }
+            toggleDetailViews(isHidden: true)
         } else {
             let pickupDetailView = DetailView(type: .pickup, address: pickupAnnotation.title)
+            pickupDetailView.accessibilityIdentifier = "pickupDetailView"
             detailViews.append(pickupDetailView)
 
             for station in stationList {
@@ -339,6 +338,7 @@ private extension HomeViewController {
             }
 
             let dropoffDetailView = DetailView(type: .dropoff, address: dropoffAnnotation.title)
+            dropoffDetailView.accessibilityIdentifier = "dropoffDetailView"
             detailViews.append(dropoffDetailView)
             detailViews.forEach({
                 $0.isHidden = true

@@ -17,6 +17,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: bounds)
         self.window?.makeKeyAndVisible()
         AppRouter.shared.startApp()
+        
+        startWithArgument()
+        
         return true
+    }
+    
+    // This function fot disable Animations for UITest
+    func startWithArgument() {
+        let arguments = ProcessInfo.processInfo.arguments
+        
+        for argument in arguments {
+            switch argument {
+            case Constants.noAnimations:
+                UIView.setAnimationsEnabled(false)
+            default:
+                break
+            }
+        }
     }
 }

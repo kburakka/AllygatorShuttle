@@ -14,7 +14,7 @@ class SocketManager: WebSocketDelegate {
     var eventClosure: EventClosure?
     
     func connect() {
-        guard let url = URL(string: Network.webSocketUrl)
+        guard let url = URL(string: Constants.webSocketUrl)
         else {
             eventClosure?(nil)
             return

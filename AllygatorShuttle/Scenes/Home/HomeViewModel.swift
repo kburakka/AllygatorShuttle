@@ -29,17 +29,17 @@ protocol HomeViewEventSource {
 protocol HomeViewProtocol: HomeViewDataSource, HomeViewEventSource {}
 
 final class HomeViewModel: BaseViewModel<HomeRouter>, HomeViewProtocol {
-    var isDetailDisplay = false
-    var detailButtonTitle: String {
-        return isDetailDisplay ? "Hide Detail" : "Show Detail"
-    }
-    var rideFinishTitle: String = "Your ride is finished!"
-    var errorTitle: String = "Something went wrong!"
-    var isConectWebSocket = false
     var isFirstTimeVehicleUpdate = true
+    var isConectWebSocket = false
+    var isDetailDisplay = false
     var isPopupDisplay = false
     var isInRideCompletion: BoolClosure?
     var lastVehicleAddress: Address?
+    var rideFinishTitle: String = "Your ride is finished!"
+    var errorTitle: String = "Something went wrong!"
+    var detailButtonTitle: String {
+        return isDetailDisplay ? "Hide Detail" : "Show Detail"
+    }
     var socketButtonTitle: String {
         return isInRide ? "Finish Ride" : "Start Ride"
     }
@@ -55,5 +55,13 @@ final class HomeViewModel: BaseViewModel<HomeRouter>, HomeViewProtocol {
     
     func getStatusAlias(status: Status) -> String {
         return status.getAlias()
+    }
+    
+    func setDefaultModel() {
+        isFirstTimeVehicleUpdate = true
+        isConectWebSocket = false
+        isDetailDisplay = false
+        lastVehicleAddress = nil
+        isInRide = false
     }
 }

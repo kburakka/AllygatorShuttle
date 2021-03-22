@@ -6,19 +6,36 @@
 //
 
 import XCTest
-@testable import AllygatorShuttle
 
 class HomeUITest: XCTestCase {
-    let app = XCUIApplication()
+    let app: XCUIApplication = {
+        let app = XCUIApplication()
+        app.launchArguments = ["NoAnimations"]
+        return app
+    }()
     
     override func setUpWithError() throws {
         app.launch()
         continueAfterFailure = false
     }
     
-    func testLoadingView() throws {
-        sleep(2)
-        app.buttons["socketButton"].tap()
+    func testSocketButtonAction() throws {
+        app.socketButton.tap()
         XCTAssertTrue(app.loadingLottie.exists)
+    }
+    
+    func testDetailButtonAction() throws {
+        app.socketButton.tap()
+        XCTAssertTrue(app.loadingLottie.exists)
+        
+        XCTAssertTrue(!app.loadingLottie.waitForExistence(timeout: 10))
+
+        app.detailButton.tap()
+        XCTAssertTrue(app.pickupDetailView.exists)
+        XCTAssertTrue(app.dropoffDetailView.exists)
+
+        app.detailButton.tap()
+        XCTAssertTrue(!app.pickupDetailView.exists)
+        XCTAssertTrue(!app.dropoffDetailView.exists)
     }
 }

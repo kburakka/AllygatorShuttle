@@ -30,6 +30,26 @@ class HomeTest: XCTestCase {
         view = nil
     }
     
+    func testSetInRide() throws {
+        // Given:
+        view.viewModel.isInRideCompletion = nil
+        
+        // When:
+        view.setInRide()
+        
+        // Then:
+        XCTAssertNotNil(view.viewModel.isInRideCompletion)
+    }
+    
+    func testSetWebSocket() throws {
+        // When:
+        view.setWebSocket()
+        socketManager.eventClosure?(.connected(["test" : "test"]))
+        
+        // Then:
+        XCTAssertEqual(view.viewModel.isConectWebSocket, true)
+    }
+    
     func testParseSocketEvent() throws {
         // When:
         let data = """
@@ -42,7 +62,7 @@ class HomeTest: XCTestCase {
         
         // Then:
         XCTAssertEqual(view.viewModel.isInRide, true)
-        XCTAssertEqual(view.viewModel.socketButtonTitle, "Finish ride")
+        XCTAssertEqual(view.viewModel.socketButtonTitle, "Finish Ride")
         if let status = Status.init(rawValue: "waitingForPickup") {
             XCTAssertEqual(view.viewModel.getStatusAlias(status: status), "Waiting for pickup!")
         } else {
@@ -50,16 +70,6 @@ class HomeTest: XCTestCase {
         }
         XCTAssertEqual(view.mapView.annotations.count, 5)
     }
-    
-    func testSetWebSocket() throws {
-        // When:
-        view.setWebSocket()
-        socketManager.eventClosure?(.connected(["test" : "test"]))
-        
-        // Then:
-        XCTAssertEqual(view.viewModel.isConectWebSocket, true)
-    }
-    
     
     func testSetUpdateVehicle() throws {
         // Given:
@@ -111,13 +121,20 @@ class HomeTest: XCTestCase {
     
     func testSetBookingClosed() throws {
         // Given:
+        view.viewModel.isFirstTimeVehicleUpdate = true
+        view.viewModel.isConectWebSocket = true
+        view.viewModel.isDetailDisplay = true
         view.viewModel.isInRide = true
-
+        
         // When:
-        view.setBookingClosed()
+        view.setBookingClosed(popupTitle: viewModel.errorTitle)
         
         // Then:
+        XCTAssertEqual(view.viewModel.isFirstTimeVehicleUpdate, true)
+        XCTAssertEqual(view.viewModel.isConectWebSocket, false)
+        XCTAssertEqual(view.viewModel.isDetailDisplay, false)
         XCTAssertEqual(view.viewModel.isInRide, false)
+
     }
     
     func testHandleError() throws {
@@ -142,5 +159,63 @@ class HomeTest: XCTestCase {
         
         // Then:
         XCTAssertEqual(view.viewModel.isPopupDisplay, true)
+    }
+    
+    func testToggleDetailButton() throws {
+        // Given:
+        let inRide = true
+        view.viewModel.isInRide = inRide
+
+        // When:
+        view.toggleDetailButton()
+        
+        sleep(1)
+        
+        // Then:
+        XCTAssertEqual(view.detailButton.isHidden, !inRide)
+        XCTAssertEqual(view.detailButton.alpha, !inRide ? 0 : 1)
+        
+        // Given:
+        let notInRide = false
+        view.viewModel.isInRide = notInRide
+
+        // When:
+        view.toggleDetailButton()
+        
+        sleep(1)
+        
+        // Then:
+        XCTAssertEqual(view.detailButton.isHidden, !notInRide)
+        XCTAssertEqual(view.detailButton.alpha, !notInRide ? 0 : 1)
+    }
+    
+    func testToggleDetailViews() throws {
+        // Given:
+        let hidden = true
+
+        // When:
+        view.toggleDetailViews(isHidden: hidden)
+        
+        sleep(2)
+        
+        // Then:
+        view.detailViews.forEach({
+            XCTAssertEqual($0.isHidden, hidden)
+            XCTAssertEqual($0.alpha, hidden ? 0 : 1)
+        })
+        
+        // Given:
+        let notHidden = false
+
+        // When:
+        view.toggleDetailViews(isHidden: notHidden)
+        
+        sleep(2)
+        
+        // Then:
+        view.detailViews.forEach({
+            XCTAssertEqual($0.isHidden, notHidden)
+            XCTAssertEqual($0.alpha, notHidden ? 0 : 1)
+        })
     }
 }

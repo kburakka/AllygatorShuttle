@@ -16,6 +16,7 @@
 		B307E2B62603F4720099B90A /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307E2B32603F4720099B90A /* Assets.swift */; };
 		B307E2B72603F4720099B90A /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307E2B42603F4720099B90A /* UIColor+Colors.swift */; };
 		B33B5B5126090773004C45DB /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33B5B5026090773004C45DB /* DetailView.swift */; };
+		B33B5B7026093A52004C45DB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33B5B6F26093A52004C45DB /* Constants.swift */; };
 		B33F76612604982B00B81A39 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F765E2604982B00B81A39 /* HomeRouter.swift */; };
 		B33F76622604982B00B81A39 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F765F2604982B00B81A39 /* HomeViewController.swift */; };
 		B33F76632604982B00B81A39 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F76602604982B00B81A39 /* HomeViewModel.swift */; };
@@ -60,7 +61,6 @@
 		B35CBEC22603B2160071DE9C /* PushTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBEC12603B2160071DE9C /* PushTransition.swift */; };
 		B35CBEC72603B2270071DE9C /* PlaceOnWindowTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBEC62603B2270071DE9C /* PlaceOnWindowTransition.swift */; };
 		B35CBEF12603C8C20071DE9C /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBEF02603C8C20071DE9C /* SocketManager.swift */; };
-		B35CBEFC2603CA8B0071DE9C /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBEFB2603CA8B0071DE9C /* Network.swift */; };
 		B35CBF0E2603CD5A0071DE9C /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBF0D2603CD5A0071DE9C /* Event.swift */; };
 		B35CBF162603CDFF0071DE9C /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBF152603CDFF0071DE9C /* Status.swift */; };
 		B35CBF1C2603CE8F0071DE9C /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35CBF1B2603CE8F0071DE9C /* Address.swift */; };
@@ -106,6 +106,7 @@
 		B307E2B32603F4720099B90A /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		B307E2B42603F4720099B90A /* UIColor+Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
 		B33B5B5026090773004C45DB /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		B33B5B6F26093A52004C45DB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B33F765E2604982B00B81A39 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		B33F765F2604982B00B81A39 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B33F76602604982B00B81A39 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -156,7 +157,6 @@
 		B35CBEC12603B2160071DE9C /* PushTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushTransition.swift; sourceTree = "<group>"; };
 		B35CBEC62603B2270071DE9C /* PlaceOnWindowTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOnWindowTransition.swift; sourceTree = "<group>"; };
 		B35CBEF02603C8C20071DE9C /* SocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
-		B35CBEFB2603CA8B0071DE9C /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		B35CBF0D2603CD5A0071DE9C /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		B35CBF152603CDFF0071DE9C /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		B35CBF1B2603CE8F0071DE9C /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
@@ -321,17 +321,17 @@
 		B35CBDD52603AE9C0071DE9C /* AllygatorShuttle */ = {
 			isa = PBXGroup;
 			children = (
-				B33F76F02605EB3D00B81A39 /* Helper */,
-				B33F769E26051E4600B81A39 /* CustomComponents */,
-				B33F767B2604EECA00B81A39 /* Extension */,
-				B35CBEF82603CA280071DE9C /* Entity */,
-				B35CBEEF2603C8970071DE9C /* WebSocket */,
-				B35CBEA12603B1A10071DE9C /* Router */,
-				B35CBE6D2603B07A0071DE9C /* Constants */,
-				B35CBE5A2603AFE70071DE9C /* Configuration */,
-				B35CBE1C2603AFAA0071DE9C /* Resources */,
 				B35CBE1B2603AF870071DE9C /* AppDelegate */,
+				B35CBE5A2603AFE70071DE9C /* Configuration */,
+				B35CBE6D2603B07A0071DE9C /* Constants */,
+				B33F769E26051E4600B81A39 /* CustomComponents */,
+				B35CBEF82603CA280071DE9C /* Entity */,
+				B33F767B2604EECA00B81A39 /* Extension */,
+				B33F76F02605EB3D00B81A39 /* Helper */,
+				B35CBE1C2603AFAA0071DE9C /* Resources */,
+				B35CBEA12603B1A10071DE9C /* Router */,
 				B35CBE1A2603AF7F0071DE9C /* Scenes */,
+				B35CBEEF2603C8970071DE9C /* WebSocket */,
 			);
 			path = AllygatorShuttle;
 			sourceTree = "<group>";
@@ -418,7 +418,7 @@
 			isa = PBXGroup;
 			children = (
 				B35CBE9C2603B1740071DE9C /* Closures.swift */,
-				B35CBEFB2603CA8B0071DE9C /* Network.swift */,
+				B33B5B6F26093A52004C45DB /* Constants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -818,7 +818,7 @@
 				B35CBEC22603B2160071DE9C /* PushTransition.swift in Sources */,
 				B33F766B2604983A00B81A39 /* HomeRoute.swift in Sources */,
 				B33F76CF26054C6000B81A39 /* UIStackView+Extension.swift in Sources */,
-				B35CBEFC2603CA8B0071DE9C /* Network.swift in Sources */,
+				B33B5B7026093A52004C45DB /* Constants.swift in Sources */,
 				B35CBE722603B09B0071DE9C /* SplashViewController.swift in Sources */,
 				B33F76C226054AC600B81A39 /* PopupViewModel.swift in Sources */,
 				B33F767E2604EEF700B81A39 /* UIImage+Extension.swift in Sources */,
