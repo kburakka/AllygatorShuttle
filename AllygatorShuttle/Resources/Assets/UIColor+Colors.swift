@@ -10,10 +10,6 @@ public extension UIColor {
       return Asset.Colors.atelier.color
   }
 
-  static var awareness: UIColor {
-      return Asset.Colors.awareness.color
-  }
-
   static var calcite: UIColor {
       return Asset.Colors.calcite.color
   }

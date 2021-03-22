@@ -29,10 +29,10 @@ extension UIView {
         subviews.forEach { addSubview($0) }
     }
     
-    func addShadow(ofColor color: UIColor = .black,
+    func addShadow(ofColor color: UIColor = .coal,
                    radius: CGFloat = 6,
                    offset: CGSize = .zero,
-                   opacity: Float = 0.5) {
+                   opacity: Float = 0.7) {
         layer.shadowColor = color.cgColor
         layer.shadowOffset = offset
         layer.shadowRadius = radius

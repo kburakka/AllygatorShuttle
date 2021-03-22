@@ -14,12 +14,14 @@ protocol HomeViewControllerProtocol {
     var cardView: UIView { get }
     var socketButton: UIButton { get }
     var statusLabel: UILabel { get }
-    var stackView: UIStackView { get }
+    var cardStackView: UIStackView { get }
+    var buttonStackView: UIStackView { get }
     var vehicleAnnotation: BaseAnnotation { get }
     var pickupAnnotation: BaseAnnotation { get }
     var dropoffAnnotation: BaseAnnotation { get }
     var stationList: [BaseAnnotation] { get set }
     var vehicleAnnotationView: BaseAnnotationView? { get set }
+    var detailViews: [DetailView] { get set }
 
     func setWebSocket()
     func parseSocketEvent(socket: String)
@@ -38,24 +40,45 @@ final class HomeViewController: BaseViewController<HomeViewModel>, HomeViewContr
     var dropoffAnnotation = BaseAnnotation(image: .imgFinish, annotationType: .dropoff)
     var vehicleAnnotationView: BaseAnnotationView?
     var stationList: [BaseAnnotation] = []
-
-    var cardView: UIView = {
+    var detailViews: [DetailView] = []
+    
+    let cardView: UIView = {
         let view = UIView(backgroundColor: .white, cornerRadius: 19)
         view.addShadow(radius: 14,
                        offset: CGSize(width: 0, height: -9),
                        opacity: 0.2)
+        view.layer.borderWidth = 2
+        view.layer.borderColor = UIColor.coal.cgColor
         return view
     }()
     
     lazy var socketButton: UIButton = {
         let button = UIButton()
         button.cornerRadius = 6
+        button.height(44)
+        button.width(120)
         button.titleLabel?.font = .mavenProMediumLarge
         button.backgroundColor = .coal
         button.titleLabel?.textColor = .calcite
         button.setTitle(viewModel.socketButtonTitle, for: .normal)
         button.addTarget(self, action: #selector(socketAction), for: .touchUpInside)
         button.accessibilityIdentifier = "socketButton"
+        return button
+    }()
+    
+    lazy var detailButton: UIButton = {
+        let button = UIButton()
+        button.cornerRadius = 6
+        button.height(44)
+        button.width(120)
+        button.titleLabel?.font = .mavenProMediumLarge
+        button.backgroundColor = .atelier
+        button.titleLabel?.textColor = .calcite
+        button.setTitle(viewModel.detailButtonTitle, for: .normal)
+        button.addTarget(self, action: #selector(detailAction), for: .touchUpInside)
+        button.accessibilityIdentifier = "detailButton"
+        button.isHidden = true
+        button.alpha = 0
         return button
     }()
     
@@ -67,13 +90,31 @@ final class HomeViewController: BaseViewController<HomeViewModel>, HomeViewContr
         return label
     }()
     
-    lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [statusLabel,
-                                                       socketButton],
+    lazy var cardStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [detailStackView,
+                                                       buttonStackView],
                                    axis: .vertical,
                                    spacing: 15,
                                    alignment: .center,
-                                   distribution: .fill)
+                                   distribution: .equalCentering)
+        return stackView
+    }()
+    
+    lazy var buttonStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [socketButton, detailButton],
+                                    axis: .horizontal,
+                                    spacing: 15,
+                                    alignment: .center,
+                                    distribution: .fill)
+        return stackView
+    }()
+    
+    lazy var detailStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [statusLabel],
+                                    axis: .vertical,
+                                    spacing: 10,
+                                    alignment: .center,
+                                    distribution: .fill)
         return stackView
     }()
     
@@ -81,7 +122,32 @@ final class HomeViewController: BaseViewController<HomeViewModel>, HomeViewContr
         super.viewDidLoad()
         view.accessibilityIdentifier = "HomeViewController"
         mapView.delegate = self
+        setInRide()
+        setWebSocket()
+    }
+    
+    override func setupViews() {
+        cardView.addSubview(cardStackView)
+        view.addSubviews([mapView, cardView])
+    }
+    
+    override func setupLayouts() {
+        mapView.edgesToSuperview(excluding: .bottom)
+        mapView.bottomToTop(of: cardView, offset: 20)
         
+        cardStackView.edgesToSuperview(insets: .init(top: 20, left: 20, bottom: 50, right: 20))
+        cardView.edgesToSuperview(excluding: .top,
+                                  insets: .init(top: 0,
+                                                left: 0,
+                                                bottom: -20,
+                                                right: 0),
+                                  usingSafeArea: false)
+    }
+}
+
+// MARK: - Helper
+extension HomeViewController {
+    func setInRide() {
         viewModel.isInRideCompletion = { [weak self] isInRide in
             guard let self = self else { return }
             self.socketButton.setTitle(self.viewModel.socketButtonTitle, for: .normal)
@@ -90,34 +156,10 @@ final class HomeViewController: BaseViewController<HomeViewModel>, HomeViewContr
                 self.statusLabel.text = nil
                 self.mapView.removeAllAnnotations()
             }
+            self.toggleDetailButton()
         }
-
-        setWebSocket()
     }
     
-    override func setupViews() {
-        socketButton.height(44)
-        socketButton.width(120)
-        cardView.addSubview(stackView)
-        view.addSubviews([mapView, cardView])
-    }
-    
-    override func setupLayouts() {
-        mapView.edgesToSuperview(excluding: .bottom)
-        mapView.bottomToTop(of: cardView, offset: 20)
-        
-        stackView.edgesToSuperview(insets: .init(top: 20, left: 20, bottom: 20, right: 20))
-        cardView.edgesToSuperview(excluding: .top,
-                                  insets: .init(top: 0,
-                                                left: 0,
-                                                bottom: 20,
-                                                right: 0),
-                                  usingSafeArea: false)
-    }
-}
-
-// MARK: - Helper
-extension HomeViewController {
     func setWebSocket() {
         viewModel.socketManager.eventClosure = { event in
             guard let event = event else {
@@ -252,6 +294,24 @@ extension HomeViewController {
             }
         }
     }
+    
+    func toggleDetailButton() {
+        UIView.animate(withDuration: 0.7, animations: {
+            self.detailButton.isHidden = !self.viewModel.isInRide
+            self.detailButton.alpha = !self.viewModel.isInRide ? 0 : 1
+        })
+    }
+    
+    func toggleDetailViews(isHidden: Bool, completion: VoidClosure? = nil) {
+        UIView.animate(withDuration: 1, animations: {
+            self.detailViews.forEach({
+                $0.isHidden = isHidden
+                $0.alpha = isHidden ? 0 : 1
+            })
+        }) { _ in
+            completion?()
+        }
+    }
 }
 
 // MARK: - Action
@@ -260,6 +320,37 @@ private extension HomeViewController {
     func socketAction() {
         viewModel.showLoading()
         viewModel.isInRide ? viewModel.socketManager.disconnect() : viewModel.socketManager.connect()
+    }
+    
+    func detailAction() {
+        if viewModel.isDetailDisplay {
+            toggleDetailViews(isHidden: true) {
+                self.detailViews.forEach({ $0.removeFromSuperview() })
+                self.detailViews = []
+            }
+        } else {
+            let pickupDetailView = DetailView(type: .pickup, address: pickupAnnotation.title)
+            detailViews.append(pickupDetailView)
+
+            for station in stationList {
+                let stationDetailView = DetailView(type: .station, address: station.title)
+                detailViews.append(stationDetailView)
+
+            }
+
+            let dropoffDetailView = DetailView(type: .dropoff, address: dropoffAnnotation.title)
+            detailViews.append(dropoffDetailView)
+            detailViews.forEach({
+                $0.isHidden = true
+                $0.alpha = 0
+            })
+            
+            detailStackView.addArrangedSubviews(detailViews)
+            toggleDetailViews(isHidden: false)
+        }
+        
+        viewModel.isDetailDisplay.toggle()
+        detailButton.setTitle(viewModel.detailButtonTitle, for: .normal)
     }
 }
 
