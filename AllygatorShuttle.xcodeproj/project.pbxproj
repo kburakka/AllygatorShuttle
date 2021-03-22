@@ -11,12 +11,12 @@
 		B307E28E2603F1930099B90A /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = B307E28D2603F1930099B90A /* swiftgen.yml */; };
 		B307E2992603F1F20099B90A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B307E2982603F1F20099B90A /* Images.xcassets */; };
 		B307E2A62603F4280099B90A /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307E2A52603F4280099B90A /* Fonts.swift */; };
-		B307E2AE2603F4610099B90A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B307E2AD2603F4610099B90A /* Assets.xcassets */; };
 		B307E2B52603F4720099B90A /* UIImage+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307E2B22603F4720099B90A /* UIImage+Images.swift */; };
 		B307E2B62603F4720099B90A /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307E2B32603F4720099B90A /* Assets.swift */; };
 		B307E2B72603F4720099B90A /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307E2B42603F4720099B90A /* UIColor+Colors.swift */; };
 		B33B5B5126090773004C45DB /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33B5B5026090773004C45DB /* DetailView.swift */; };
 		B33B5B7026093A52004C45DB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33B5B6F26093A52004C45DB /* Constants.swift */; };
+		B33B5BA126094984004C45DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B33B5BA026094984004C45DB /* Assets.xcassets */; };
 		B33F76612604982B00B81A39 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F765E2604982B00B81A39 /* HomeRouter.swift */; };
 		B33F76622604982B00B81A39 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F765F2604982B00B81A39 /* HomeViewController.swift */; };
 		B33F76632604982B00B81A39 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33F76602604982B00B81A39 /* HomeViewModel.swift */; };
@@ -101,12 +101,12 @@
 		B307E28D2603F1930099B90A /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		B307E2982603F1F20099B90A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B307E2A52603F4280099B90A /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
-		B307E2AD2603F4610099B90A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../../Work/iyi-yasa-ios/iyi-yasa-ios/Resources/Assets.xcassets"; sourceTree = "<group>"; };
 		B307E2B22603F4720099B90A /* UIImage+Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Images.swift"; sourceTree = "<group>"; };
 		B307E2B32603F4720099B90A /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		B307E2B42603F4720099B90A /* UIColor+Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
 		B33B5B5026090773004C45DB /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		B33B5B6F26093A52004C45DB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B33B5BA026094984004C45DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B33F765E2604982B00B81A39 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		B33F765F2604982B00B81A39 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B33F76602604982B00B81A39 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -494,10 +494,10 @@
 		B35CBF602603E3C20071DE9C /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				B33B5BA026094984004C45DB /* Assets.xcassets */,
 				B307E2B32603F4720099B90A /* Assets.swift */,
 				B307E2B42603F4720099B90A /* UIColor+Colors.swift */,
 				B307E2B22603F4720099B90A /* UIImage+Images.swift */,
-				B307E2AD2603F4610099B90A /* Assets.xcassets */,
 				B35CBF902603E74C0071DE9C /* Colors.xcassets */,
 				B307E2982603F1F20099B90A /* Images.xcassets */,
 			);
@@ -630,7 +630,7 @@
 				B33F76DE2605E5C100B81A39 /* MavenPro-Medium.ttf in Resources */,
 				B307E2992603F1F20099B90A /* Images.xcassets in Resources */,
 				B35CBF622603E4CA0071DE9C /* .swiftlint.yml in Resources */,
-				B307E2AE2603F4610099B90A /* Assets.xcassets in Resources */,
+				B33B5BA126094984004C45DB /* Assets.xcassets in Resources */,
 				B35CBDE32603AE9E0071DE9C /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
