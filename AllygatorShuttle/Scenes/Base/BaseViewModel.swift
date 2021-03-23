@@ -12,8 +12,8 @@ protocol BaseViewModelDataSource: AnyObject { }
 protocol BaseViewModelEventSource: AnyObject { }
 
 protocol BaseViewModelProtocol: BaseViewModelDataSource, BaseViewModelEventSource {
-    func showLoading()
-    func hideLoading()
+    func showLoadingView()
+    func hideLoadingView()
 }
 
 class BaseViewModel<R: Router>: BaseViewModelProtocol {
@@ -27,11 +27,11 @@ class BaseViewModel<R: Router>: BaseViewModelProtocol {
         self.socketManager = socketManager
     }
     
-    func showLoading() {
+    func showLoadingView() {
         hud.showHUD()
     }
     
-    func hideLoading() {
+    func hideLoadingView() {
         hud.stopHUD()
     }
 }

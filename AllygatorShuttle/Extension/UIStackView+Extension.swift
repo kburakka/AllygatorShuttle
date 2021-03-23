@@ -31,5 +31,4 @@ extension UIStackView {
             addArrangedSubview(view)
         }
     }
-    
 }

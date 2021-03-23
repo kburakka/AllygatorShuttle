@@ -35,7 +35,7 @@ class HomeTest: XCTestCase {
         view.viewModel.isInRideCompletion = nil
         
         // When:
-        view.setInRide()
+        view.setInRideCompletion()
         
         // Then:
         XCTAssertNotNil(view.viewModel.isInRideCompletion)
@@ -43,7 +43,7 @@ class HomeTest: XCTestCase {
     
     func testSetWebSocket() throws {
         // When:
-        view.setWebSocket()
+        view.setWebSocketClosure()
         socketManager.eventClosure?(.connected(["test" : "test"]))
         
         // Then:
@@ -58,7 +58,7 @@ class HomeTest: XCTestCase {
         view.mapView.removeAnnotations(view.mapView.annotations)
 
         // When:
-        view.parseSocketEvent(socket: data)
+        view.parseSocketEvent(eventData: data)
         
         // Then:
         XCTAssertEqual(view.viewModel.isInRide, true)
@@ -155,7 +155,7 @@ class HomeTest: XCTestCase {
         view.viewModel.isPopupDisplay = false
         
         // When:
-        view.showPopup(title: "title")
+        view.showPopupView(title: "title")
         
         // Then:
         XCTAssertEqual(view.viewModel.isPopupDisplay, true)

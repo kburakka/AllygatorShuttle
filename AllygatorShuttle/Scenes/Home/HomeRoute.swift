@@ -11,6 +11,7 @@ protocol HomeRoute {
 
 extension HomeRoute where Self: RouterProtocol {
     
+    /// Thins opens Home screem
     func pushHome() {
         let router = HomeRouter()
         let viewModel = HomeViewModel(router: router)

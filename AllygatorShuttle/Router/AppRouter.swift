@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class AppRouter: Router, AppRouter.Routes {
-    
+    // This typealias includes the routes which AppRouter can open
     typealias Routes = SplashRoute
     
     static let shared = AppRouter()

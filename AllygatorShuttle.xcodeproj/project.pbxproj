@@ -293,11 +293,11 @@
 			path = LottieFile;
 			sourceTree = "<group>";
 		};
-		B33F77612606A18500B81A39 /* ExtensionTest */ = {
+		B342693F260A5141002168AB /* ExtensionTest */ = {
 			isa = PBXGroup;
 			children = (
-				B33F77592606A0BB00B81A39 /* UIStackViewExtensionTest.swift */,
 				B33F77752606A41500B81A39 /* MKMapViewExtensionTest.swift */,
+				B33F77592606A0BB00B81A39 /* UIStackViewExtensionTest.swift */,
 				B33F777D2606A4D900B81A39 /* UIViewExtensionTest.swift */,
 			);
 			path = ExtensionTest;
@@ -347,9 +347,9 @@
 		B35CBDEC2603AE9E0071DE9C /* AllygatorShuttleTests */ = {
 			isa = PBXGroup;
 			children = (
-				B33F77612606A18500B81A39 /* ExtensionTest */,
-				B35CBDEF2603AE9E0071DE9C /* Info.plist */,
 				B33F775126067ED200B81A39 /* HomeTest.swift */,
+				B342693F260A5141002168AB /* ExtensionTest */,
+				B35CBDEF2603AE9E0071DE9C /* Info.plist */,
 			);
 			path = AllygatorShuttleTests;
 			sourceTree = "<group>";
@@ -502,10 +502,10 @@
 		B35CBF602603E3C20071DE9C /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				B33B5BA026094984004C45DB /* Assets.xcassets */,
 				B307E2B32603F4720099B90A /* Assets.swift */,
 				B307E2B42603F4720099B90A /* UIColor+Colors.swift */,
 				B307E2B22603F4720099B90A /* UIImage+Images.swift */,
+				B33B5BA026094984004C45DB /* Assets.xcassets */,
 				B35CBF902603E74C0071DE9C /* Colors.xcassets */,
 				B307E2982603F1F20099B90A /* Images.xcassets */,
 			);

@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    // This function fot disable Animations for UITest
+    /// This disable Animations. This is using while UITest
     func startWithArgument() {
         let arguments = ProcessInfo.processInfo.arguments
         

@@ -21,7 +21,7 @@ class DetailView: UIView {
         return imageView
     }()
     
-    var addressLabel: UILabel = {
+    private var addressLabel: UILabel = {
         let label = UILabel()
         label.font = .mavenProMediumMedium
         label.textColor = .coal
@@ -68,7 +68,6 @@ class DetailView: UIView {
         imageView.edgesToSuperview(excluding: .trailing, insets: .init(top: 0, left: 10, bottom: 0, right: 10))
         
         addressLabel.edgesToSuperview(excluding: .leading, insets: .init(top: 0, left: 10, bottom: 0, right: 10))
-        
         addressLabel.leadingToTrailing(of: imageView, offset: 10)
         
         containerView.edgesToSuperview()

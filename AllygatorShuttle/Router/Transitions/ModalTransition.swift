@@ -48,9 +48,7 @@ extension ModalTransition: Transition {
 }
 
 // MARK: - UIViewControllerTransitioningDelegate
-
 extension ModalTransition: UIViewControllerTransitioningDelegate {
-
     func animationController(forPresented presented: UIViewController,
                              presenting: UIViewController,
                              source: UIViewController) -> UIViewControllerAnimatedTransitioning? {

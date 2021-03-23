@@ -13,6 +13,7 @@ protocol SplashRoute {
 
 extension SplashRoute where Self: RouterProtocol {
     
+    /// Thins opens Splash screem
     func pushSplash() {
         let router = SplashRouter()
         let viewModel = SplashViewModel(router: router)

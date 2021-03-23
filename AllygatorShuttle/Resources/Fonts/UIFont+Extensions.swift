@@ -8,9 +8,7 @@
 import UIKit
 
 public extension UIFont {
-    
 // MARK: - Maven Pro Regular
-    
     /// Font size: 12
     static var mavenProMediumXSmall: UIFont {
         return FontFamily.MavenPro.medium.font(size: 12)

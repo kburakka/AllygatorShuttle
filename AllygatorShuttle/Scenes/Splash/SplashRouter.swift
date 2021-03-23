@@ -6,5 +6,6 @@
 //
 
 final class SplashRouter: Router, SplashRouter.Routes {
+    // This typealias includes the routes which SplashRouter can open
     typealias Routes = HomeRoute
 }

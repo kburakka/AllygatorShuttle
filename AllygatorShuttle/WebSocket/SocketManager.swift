@@ -29,6 +29,7 @@ class SocketManager: WebSocketDelegate {
         socket?.disconnect()
     }
     
+    /// This triggers when new event arrives
     func didReceive(event: WebSocketEvent, client: WebSocket) {
         eventClosure?(event)
     }

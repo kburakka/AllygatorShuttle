@@ -23,7 +23,7 @@ protocol HomeViewDataSource {
 }
 
 protocol HomeViewEventSource {
-    func showPopup(title: String, closeHandler: VoidClosure?)
+    func showPopupView(title: String, closeHandler: VoidClosure?)
 }
 
 protocol HomeViewProtocol: HomeViewDataSource, HomeViewEventSource {}
@@ -49,7 +49,7 @@ final class HomeViewModel: BaseViewModel<HomeRouter>, HomeViewProtocol {
         }
     }
     
-    func showPopup(title: String, closeHandler: VoidClosure?) {
+    func showPopupView(title: String, closeHandler: VoidClosure?) {
         router.presentPopupView(closeHandler: closeHandler, title: title)
     }
     
@@ -57,6 +57,7 @@ final class HomeViewModel: BaseViewModel<HomeRouter>, HomeViewProtocol {
         return status.getAlias()
     }
     
+    /// This will revert the variables to their original state
     func setDefaultModel() {
         isFirstTimeVehicleUpdate = true
         isConectWebSocket = false

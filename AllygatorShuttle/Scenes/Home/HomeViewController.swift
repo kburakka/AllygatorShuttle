@@ -25,14 +25,14 @@ protocol HomeViewControllerDataProtocol {
 }
 
 protocol HomeViewControllerHelperProtocol {
-    func setInRide()
-    func setWebSocket()
-    func parseSocketEvent(socket: String)
+    func setInRideCompletion()
+    func setWebSocketClosure()
+    func parseSocketEvent(eventData: String)
     func setUpdateVehicle(_ address: Address)
     func setBookingOpened(_ data: BookingOpenedData)
     func setStations(_ addressList: [Address?])
     func handleError(_ error: Error?)
-    func showPopup(title: String)
+    func showPopupView(title: String)
     func setBookingClosed(popupTitle: String)
     func toggleDetailButton()
     func toggleDetailViews(isHidden: Bool)
@@ -127,8 +127,8 @@ final class HomeViewController: BaseViewController<HomeViewModel>, HomeViewContr
         super.viewDidLoad()
         view.accessibilityIdentifier = "HomeViewController"
         mapView.delegate = self
-        setInRide()
-        setWebSocket()
+        setInRideCompletion()
+        setWebSocketClosure()
     }
     
     override func setupViews() {
@@ -152,7 +152,8 @@ final class HomeViewController: BaseViewController<HomeViewModel>, HomeViewContr
 
 // MARK: - Helper
 extension HomeViewController: HomeViewControllerHelperProtocol {
-    func setInRide() {
+    /// This sets ride completion. We can inform ride status change.
+    func setInRideCompletion() {
         viewModel.isInRideCompletion = { [weak self] isInRide in
             guard let self = self else { return }
             self.socketButton.setTitle(self.viewModel.socketButtonTitle, for: .normal)
@@ -166,7 +167,8 @@ extension HomeViewController: HomeViewControllerHelperProtocol {
         }
     }
     
-    func setWebSocket() {
+    /// This sets socket event closure. We can inform recieving events from web socket. Directs the relevant function according to the event/
+    func setWebSocketClosure() {
         viewModel.socketManager.eventClosure = { event in
             guard let event = event else {
                 self.setBookingClosed(popupTitle: self.viewModel.errorTitle)
@@ -175,12 +177,12 @@ extension HomeViewController: HomeViewControllerHelperProtocol {
             switch event {
             case .connected:
                 self.viewModel.isConectWebSocket = true
-                self.viewModel.hideLoading()
+                self.viewModel.hideLoadingView()
             case .disconnected:
                 self.viewModel.isConectWebSocket = false
-                self.viewModel.hideLoading()
+                self.viewModel.hideLoadingView()
             case .text(let string):
-                self.parseSocketEvent(socket: string)
+                self.parseSocketEvent(eventData: string)
             case .cancelled:
                 self.setBookingClosed(popupTitle: self.viewModel.rideFinishTitle)
             case .error(let error):
@@ -191,8 +193,9 @@ extension HomeViewController: HomeViewControllerHelperProtocol {
         }
     }
     
-    func parseSocketEvent(socket: String) {
-        guard let data = socket.data(using: .utf8),
+    /// This parses socket event data.  Directs the relevant function according to the data.
+    func parseSocketEvent(eventData: String) {
+        guard let data = eventData.data(using: .utf8),
               let response = Socket(data: data) else {
             setBookingClosed(popupTitle: viewModel.errorTitle)
             return
@@ -214,6 +217,7 @@ extension HomeViewController: HomeViewControllerHelperProtocol {
         }
     }
     
+    /// This sets and updates vehicle annotation
     func setUpdateVehicle(_ address: Address) {
         var address = address
         UIView.animate(withDuration: 2.0, animations: {
@@ -231,6 +235,7 @@ extension HomeViewController: HomeViewControllerHelperProtocol {
         }
     }
     
+    /// This sets annotations(picup, dropoff and stations) which came from BookingOpenedData
     func setBookingOpened(_ data: BookingOpenedData) {
         viewModel.isInRide = true
         statusLabel.text = viewModel.getStatusAlias(status: data.status)
@@ -252,6 +257,7 @@ extension HomeViewController: HomeViewControllerHelperProtocol {
         setStations(data.intermediateStopLocations)
     }
     
+    /// This sets and updates station annotations
     func setStations(_ addressList: [Address?]) {
         mapView.removeAnnotations(stationList)
         stationList = []
@@ -267,11 +273,12 @@ extension HomeViewController: HomeViewControllerHelperProtocol {
         })
     }
     
+    /// This triggers when booking closed or occur error. Shows popup and set variables to initial state
     func setBookingClosed(popupTitle: String) {
-        viewModel.hideLoading()
+        viewModel.hideLoadingView()
         toggleDetailViews(isHidden: true)
         viewModel.setDefaultModel()
-        showPopup(title: popupTitle)
+        showPopupView(title: popupTitle)
     }
 
     func handleError(_ error: Error?) {
@@ -284,9 +291,9 @@ extension HomeViewController: HomeViewControllerHelperProtocol {
         }
     }
     
-    func showPopup(title: String) {
+    func showPopupView(title: String) {
         viewModel.isPopupDisplay = true
-        viewModel.showPopup(title: title) {
+        viewModel.showPopupView(title: title) {
             self.viewModel.isPopupDisplay = false
             if let popupView = UIApplication.topViewController() {
                 popupView.dismiss(animated: true)
@@ -294,6 +301,7 @@ extension HomeViewController: HomeViewControllerHelperProtocol {
         }
     }
     
+    /// This shows or hides Detail button
     func toggleDetailButton() {
         UIView.animate(withDuration: 0.7, animations: {
             self.detailButton.isHidden = !self.viewModel.isInRide
@@ -301,6 +309,7 @@ extension HomeViewController: HomeViewControllerHelperProtocol {
         })
     }
     
+    /// This shows or hides Detail Views
     func toggleDetailViews(isHidden: Bool) {
         UIView.animate(withDuration: 1, animations: {
             self.detailViews.forEach({
@@ -319,11 +328,13 @@ extension HomeViewController: HomeViewControllerHelperProtocol {
 // MARK: - Action
 @objc
 private extension HomeViewController {
+    /// This triggers when Socket button is tapped
     func socketAction() {
-        viewModel.showLoading()
+        viewModel.showLoadingView()
         viewModel.isInRide ? viewModel.socketManager.disconnect() : viewModel.socketManager.connect()
     }
     
+    /// This triggers when Detail button is tapped
     func detailAction() {
         if viewModel.isDetailDisplay {
             toggleDetailViews(isHidden: true)

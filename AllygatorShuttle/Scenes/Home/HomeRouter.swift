@@ -6,5 +6,6 @@
 //
 
 final class HomeRouter: Router, HomeRouter.Routes {
+    // This typealias includes the routes which HomeRouter can open
     typealias Routes = PopupViewRoute
 }
