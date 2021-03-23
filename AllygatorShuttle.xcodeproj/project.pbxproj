@@ -222,6 +222,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		B33B5BC126095D64004C45DB /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B35CBE1B2603AF870071DE9C /* AppDelegate */,
+				B35CBE5A2603AFE70071DE9C /* Configuration */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		B33F765D2604981800B81A39 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,8 +330,7 @@
 		B35CBDD52603AE9C0071DE9C /* AllygatorShuttle */ = {
 			isa = PBXGroup;
 			children = (
-				B35CBE1B2603AF870071DE9C /* AppDelegate */,
-				B35CBE5A2603AFE70071DE9C /* Configuration */,
+				B33B5BC126095D64004C45DB /* App */,
 				B35CBE6D2603B07A0071DE9C /* Constants */,
 				B33F769E26051E4600B81A39 /* CustomComponents */,
 				B35CBEF82603CA280071DE9C /* Entity */,
@@ -1017,7 +1025,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3MNXT4L4F4;
-				INFOPLIST_FILE = AllygatorShuttle/Configuration/Info.plist;
+				INFOPLIST_FILE = AllygatorShuttle/App/Configuration/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1037,7 +1045,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3MNXT4L4F4;
-				INFOPLIST_FILE = AllygatorShuttle/Configuration/Info.plist;
+				INFOPLIST_FILE = AllygatorShuttle/App/Configuration/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

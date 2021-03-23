@@ -17,7 +17,7 @@ public extension UIFont {
     }
     
     /// Font size: 13
-    static var mavenProMediumzSmall: UIFont {
+    static var mavenProMediumSmall: UIFont {
         return FontFamily.MavenPro.medium.font(size: 13)
     }
     
