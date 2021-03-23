@@ -18,7 +18,7 @@ class SplashUITest: XCTestCase {
         XCTAssertTrue(app.splashViewController.exists)
     }
     
-    func testExample() throws {
+    func testHomeView() throws {
         XCTAssertTrue(app.homeViewController.waitForExistence(timeout: 2))
     }
 }
