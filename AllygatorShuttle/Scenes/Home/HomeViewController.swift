@@ -156,6 +156,7 @@ extension HomeViewController: HomeViewControllerHelperProtocol {
         viewModel.isInRideCompletion = { [weak self] isInRide in
             guard let self = self else { return }
             self.socketButton.setTitle(self.viewModel.socketButtonTitle, for: .normal)
+            self.detailButton.setTitle(self.viewModel.detailButtonTitle, for: .normal)
             if !isInRide {
                 self.viewModel.isFirstTimeVehicleUpdate = true
                 self.statusLabel.text = nil
